@@ -329,8 +329,11 @@ namespace HRinfoAPI.Controllers
             }
 
             var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
+            //var user = new ApplicationUser() { UserName = "userTest", Email = "www@wp.pl" };
 
             IdentityResult result = await UserManager.CreateAsync(user, model.Password);
+            //IdentityResult result = await UserManager.CreateAsync(user, "P@ssw0rd");
+
 
             if (!result.Succeeded)
             {
