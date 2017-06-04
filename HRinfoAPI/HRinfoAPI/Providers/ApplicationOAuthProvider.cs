@@ -35,7 +35,7 @@ namespace HRinfoAPI.Providers
 
             if (user == null)
             {
-                context.SetError("invalid_grant", "Nazwa użytkownika lub hasło są niepoprawne.");
+                context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace HRinfoAPI.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            // Poświadczenia hasła właściciela zasobu nie udostępniają identyfikatora klienta.
+            // Resource owner password credentials does not provide a client ID.
             if (context.ClientId == null)
             {
                 context.Validated();

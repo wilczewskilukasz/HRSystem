@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace HRinfoAPI.Models
 {
-    // Modele zwracane przez akcje elementu AccountController.
+    // Models returned by AccountController actions.
 
     public class ExternalLoginViewModel
     {

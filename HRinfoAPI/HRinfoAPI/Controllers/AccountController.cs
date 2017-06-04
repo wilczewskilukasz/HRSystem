@@ -170,14 +170,14 @@ namespace HRinfoAPI.Controllers
                 && ticket.Properties.ExpiresUtc.HasValue
                 && ticket.Properties.ExpiresUtc.Value < DateTimeOffset.UtcNow))
             {
-                return BadRequest("Błąd logowania zewnętrznego.");
+                return BadRequest("External login failure.");
             }
 
             ExternalLoginData externalData = ExternalLoginData.FromIdentity(ticket.Identity);
 
             if (externalData == null)
             {
-                return BadRequest("Logowanie zewnętrzne jest już skojarzone z kontem.");
+                return BadRequest("The external login is already associated with an account.");
             }
 
             IdentityResult result = await UserManager.AddLoginAsync(User.Identity.GetUserId(),
@@ -384,7 +384,7 @@ namespace HRinfoAPI.Controllers
             base.Dispose(disposing);
         }
 
-        #region Pomocnicy
+        #region Helpers
 
         private IAuthenticationManager Authentication
         {
@@ -410,7 +410,7 @@ namespace HRinfoAPI.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    // Brak dostępnych błędów elementu ModelState do wysłania, więc zwróć pusty element BadRequest.
+                    // No ModelState errors are available to send, so just return an empty BadRequest.
                     return BadRequest();
                 }
 
@@ -478,7 +478,7 @@ namespace HRinfoAPI.Controllers
 
                 if (strengthInBits % bitsPerByte != 0)
                 {
-                    throw new ArgumentException("Wartość strengthInBits musi być podzielna przez 8.", "strengthInBits");
+                    throw new ArgumentException("strengthInBits must be evenly divisible by 8.", "strengthInBits");
                 }
 
                 int strengthInBytes = strengthInBits / bitsPerByte;

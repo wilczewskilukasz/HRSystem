@@ -11,9 +11,9 @@ namespace HRinfoAPI.Models
     {
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager, string authenticationType)
         {
-            // Element authenticationType musi pasować do elementu zdefiniowanego w elemencie CookieAuthenticationOptions.AuthenticationType
+            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, authenticationType);
-            // Dodaj tutaj niestandardowe oświadczenia użytkownika
+            // Add custom user claims here
             return userIdentity;
         }
     }

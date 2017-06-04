@@ -12,12 +12,12 @@ namespace HRinfoAPI
     {
         public static void Register(HttpConfiguration config)
         {
-            // Konfiguracja i usługi składnika Web API
-            // Skonfiguruj składnik Web API, aby korzystał tylko z uwierzytelniania za pomocą tokenów bearer.
+            // Web API configuration and services
+            // Configure Web API to use only bearer token authentication.
             config.SuppressDefaultHostAuthentication();
             config.Filters.Add(new HostAuthenticationFilter(OAuthDefaults.AuthenticationType));
 
-            // Trasy składnika Web API
+            // Web API routes
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
