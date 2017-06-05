@@ -385,6 +385,8 @@
     <Content Include="Models\HRinfoModel.edmx.diagram">
       <DependentUpon>HRinfoModel.edmx</DependentUpon>
     </Content>
+    <None Include="Properties\PublishProfiles\HRinfoAPI - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\HRinfoAPI - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
