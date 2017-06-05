@@ -17,6 +17,7 @@ namespace HRinfoAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Employee()
         {
+            this.AspNetUsers = new HashSet<AspNetUser>();
             this.Calendars = new HashSet<Calendar>();
             this.EmployeePositionsHistories = new HashSet<EmployeePositionsHistory>();
             this.EmployeesAddresses = new HashSet<EmployeesAddress>();
@@ -38,6 +39,8 @@ namespace HRinfoAPI.Models
         public short UsedHolidayDays { get; set; }
         public Nullable<decimal> SalaryFee { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<AspNetUser> AspNetUsers { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Calendar> Calendars { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

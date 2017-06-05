@@ -1,0 +1,2058 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HRinfoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Addresses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StreetId" Type="int" Nullable="false" />
+          <Property Name="HouseNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="FlatNumber" Type="varchar" MaxLength="4" Nullable="false" />
+          <Property Name="PostalCode" Type="nvarchar" MaxLength="6" Nullable="false" />
+          <Property Name="CityId" Type="int" Nullable="false" />
+          <Property Name="CountryId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="AddressType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CalendarDepartmentsRestriction">
+          <Key>
+            <PropertyRef Name="CalendarId" />
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="CalendarId" Type="int" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CalendarPositionsRestriction">
+          <Key>
+            <PropertyRef Name="CalendarId" />
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="CalendarId" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Calendars">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" />
+          <Property Name="CompanyCalendarId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DateFrom" Type="date" Nullable="false" />
+          <Property Name="TimeFrom" Type="time" Precision="0" />
+          <Property Name="DateTo" Type="date" Nullable="false" />
+          <Property Name="TimeTo" Type="time" Precision="0" />
+          <Property Name="WorkDaysNumber" Type="tinyint" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="int" Nullable="false" />
+          <Property Name="PositionRestriction" Type="bit" Nullable="false" />
+          <Property Name="DepartmentRestriction" Type="bit" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="ParticipantTotalNumber" Type="smallint" />
+          <Property Name="ParticipantAvailableNumber" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Cities">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Countries">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Days">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="12" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartmentCode" Type="char" MaxLength="2" Nullable="false" />
+          <Property Name="UpDepartmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="EmployeePositionsHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="DateFrom" Type="date" Nullable="false" />
+          <Property Name="DateTo" Type="date" />
+          <Property Name="Salary" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="Employees">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="254" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="12" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="JobEmail" Type="nvarchar" MaxLength="254" />
+          <Property Name="JobPhone" Type="nvarchar" MaxLength="12" />
+          <Property Name="HolidayDaysTotal" Type="smallint" Nullable="false" />
+          <Property Name="UsedHolidayDays" Type="smallint" Nullable="false" />
+          <Property Name="SalaryFee" Type="decimal" Precision="10" Scale="2" />
+        </EntityType>
+        <EntityType Name="EmployeesAddresses">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="AddressId" />
+            <PropertyRef Name="AddressTypeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="AddressId" Type="int" Nullable="false" />
+          <Property Name="AddressTypeId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Events">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="40" Nullable="false" />
+          <Property Name="SolutionBaseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="News" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateFrom" Type="date" Nullable="false" />
+          <Property Name="DateTo" Type="date" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PayOffs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Positions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="PositionCode" Type="char" MaxLength="4" />
+          <Property Name="DepartmentId" Type="int" Nullable="false" />
+          <Property Name="UpPositionId" Type="int" />
+        </EntityType>
+        <EntityType Name="PrivateMessages">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="TopicId" Type="int" Nullable="false" />
+          <Property Name="Message" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DateTime" Type="datetime" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+          <Property Name="ResponseEmployeeId" Type="int" />
+          <Property Name="RequestId" Type="int" />
+          <Property Name="ResponseId" Type="int" />
+        </EntityType>
+        <EntityType Name="SolutionBase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderPosition" Type="tinyint" Nullable="false" />
+          <Property Name="SolutionBaseId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Streets">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="60" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Topics">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="PositionId" Type="int" />
+        </EntityType>
+        <EntityType Name="WorkSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DayId" Type="int" Nullable="false" />
+          <Property Name="WorkDay" Type="bit" Nullable="false" />
+          <Property Name="TimeFrom" Type="time" Precision="0" Nullable="false" />
+          <Property Name="TimeTo" Type="time" Precision="0" Nullable="false" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkScheduleExceptions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="WorkScheduleId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="TimeFrom" Type="time" Precision="0" />
+          <Property Name="TimeTo" Type="time" Precision="0" />
+          <Property Name="StatusId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WorkTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmployeeId" Type="int" Nullable="false" />
+          <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="TimeFrom" Type="time" Precision="0" Nullable="false" />
+          <Property Name="TimeTo" Type="time" Precision="0" Nullable="false" />
+          <Property Name="WorkDay" Type="bit" Nullable="false" />
+          <Property Name="CalendarId" Type="int" />
+        </EntityType>
+        <Association Name="FK_Addresses_Cities">
+          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_Countries">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_Streets">
+          <End Role="Streets" Type="Self.Streets" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Streets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="StreetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarDepartmentsRestriction_Calendars">
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="1" />
+          <End Role="CalendarDepartmentsRestriction" Type="Self.CalendarDepartmentsRestriction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalendarDepartmentsRestriction">
+              <PropertyRef Name="CalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarDepartmentsRestriction_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="CalendarDepartmentsRestriction" Type="Self.CalendarDepartmentsRestriction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalendarDepartmentsRestriction">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarPositionsRestriction_Calendars">
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="1" />
+          <End Role="CalendarPositionsRestriction" Type="Self.CalendarPositionsRestriction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalendarPositionsRestriction">
+              <PropertyRef Name="CalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CalendarPositionsRestriction_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="CalendarPositionsRestriction" Type="Self.CalendarPositionsRestriction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="CalendarPositionsRestriction">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Calendars_Company">
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="0..1" />
+          <End Role="Calendars1" Type="Self.Calendars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars1">
+              <PropertyRef Name="CompanyCalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Events">
+          <End Role="Events" Type="Self.Events" Multiplicity="1" />
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Departments_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Departments1" Type="Self.Departments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments1">
+              <PropertyRef Name="UpDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeePositionsHistory_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="EmployeePositionsHistory" Type="Self.EmployeePositionsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeePositionsHistory">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeePositionsHistory_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="EmployeePositionsHistory" Type="Self.EmployeePositionsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeePositionsHistory">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employees" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesAddresses_Addresses">
+          <End Role="Addresses" Type="Self.Addresses" Multiplicity="1" />
+          <End Role="EmployeesAddresses" Type="Self.EmployeesAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesAddresses">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesAddresses_AddressType">
+          <End Role="AddressType" Type="Self.AddressType" Multiplicity="1" />
+          <End Role="EmployeesAddresses" Type="Self.EmployeesAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesAddresses">
+              <PropertyRef Name="AddressTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesAddresses_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="EmployeesAddresses" Type="Self.EmployeesAddresses" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesAddresses">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_SolutionBase">
+          <End Role="SolutionBase" Type="Self.SolutionBase" Multiplicity="1" />
+          <End Role="Events" Type="Self.Events" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolutionBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="SolutionBaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayOffs_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="PayOffs" Type="Self.PayOffs" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayOffs">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Positions_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="1" />
+          <End Role="Positions" Type="Self.Positions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Positions">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Positions_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Positions1" Type="Self.Positions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Positions1">
+              <PropertyRef Name="UpPositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Employees_Request">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Employees_Response">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="0..1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="ResponseEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_PrivateMessages_Request">
+          <End Role="PrivateMessages" Type="Self.PrivateMessages" Multiplicity="0..1" />
+          <End Role="PrivateMessages1" Type="Self.PrivateMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrivateMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages1">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_PrivateMessages_Response">
+          <End Role="PrivateMessages" Type="Self.PrivateMessages" Multiplicity="0..1" />
+          <End Role="PrivateMessages1" Type="Self.PrivateMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrivateMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages1">
+              <PropertyRef Name="ResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Topics">
+          <End Role="Topics" Type="Self.Topics" Multiplicity="1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessages" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_SolutionBase">
+          <End Role="SolutionBase" Type="Self.SolutionBase" Multiplicity="1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolutionBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="SolutionBaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Departments">
+          <End Role="Departments" Type="Self.Departments" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Positions">
+          <End Role="Positions" Type="Self.Positions" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topics" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkSchedule_Days">
+          <End Role="Days" Type="Self.Days" Multiplicity="1" />
+          <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Days">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkSchedule">
+              <PropertyRef Name="DayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkSchedule_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkSchedule">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkScheduleExceptions_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="WorkScheduleExceptions" Type="Self.WorkScheduleExceptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkScheduleExceptions">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkScheduleExceptions_WorkSchedule">
+          <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="1" />
+          <End Role="WorkScheduleExceptions" Type="Self.WorkScheduleExceptions" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkSchedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkScheduleExceptions">
+              <PropertyRef Name="WorkScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkTime_Calendars">
+          <End Role="Calendars" Type="Self.Calendars" Multiplicity="0..1" />
+          <End Role="WorkTime" Type="Self.WorkTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkTime">
+              <PropertyRef Name="CalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkTime_Employees">
+          <End Role="Employees" Type="Self.Employees" Multiplicity="1" />
+          <End Role="WorkTime" Type="Self.WorkTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkTime">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HRinfoModelStoreContainer">
+          <EntitySet Name="Addresses" EntityType="Self.Addresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AddressType" EntityType="Self.AddressType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarDepartmentsRestriction" EntityType="Self.CalendarDepartmentsRestriction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CalendarPositionsRestriction" EntityType="Self.CalendarPositionsRestriction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calendars" EntityType="Self.Calendars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Days" EntityType="Self.Days" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeePositionsHistory" EntityType="Self.EmployeePositionsHistory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EmployeesAddresses" EntityType="Self.EmployeesAddresses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PayOffs" EntityType="Self.PayOffs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Positions" EntityType="Self.Positions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PrivateMessages" EntityType="Self.PrivateMessages" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SolutionBase" EntityType="Self.SolutionBase" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Streets" EntityType="Self.Streets" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Topics" EntityType="Self.Topics" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkSchedule" EntityType="Self.WorkSchedule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkScheduleExceptions" EntityType="Self.WorkScheduleExceptions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WorkTime" EntityType="Self.WorkTime" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Addresses_Cities" Association="Self.FK_Addresses_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_Countries" Association="Self.FK_Addresses_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_Streets" Association="Self.FK_Addresses_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarDepartmentsRestriction_Calendars" Association="Self.FK_CalendarDepartmentsRestriction_Calendars">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="CalendarDepartmentsRestriction" EntitySet="CalendarDepartmentsRestriction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarDepartmentsRestriction_Departments" Association="Self.FK_CalendarDepartmentsRestriction_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="CalendarDepartmentsRestriction" EntitySet="CalendarDepartmentsRestriction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarPositionsRestriction_Calendars" Association="Self.FK_CalendarPositionsRestriction_Calendars">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="CalendarPositionsRestriction" EntitySet="CalendarPositionsRestriction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CalendarPositionsRestriction_Positions" Association="Self.FK_CalendarPositionsRestriction_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="CalendarPositionsRestriction" EntitySet="CalendarPositionsRestriction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Calendars_Company" Association="Self.FK_Calendars_Calendars_Company">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="Calendars1" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Employees" Association="Self.FK_Calendars_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Events" Association="Self.FK_Calendars_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Status" Association="Self.FK_Calendars_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Departments_Departments" Association="Self.FK_Departments_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Departments1" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeePositionsHistory_Employees" Association="Self.FK_EmployeePositionsHistory_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeePositionsHistory" EntitySet="EmployeePositionsHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeePositionsHistory_Positions" Association="Self.FK_EmployeePositionsHistory_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="EmployeePositionsHistory" EntitySet="EmployeePositionsHistory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Positions" Association="Self.FK_Employees_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesAddresses_Addresses" Association="Self.FK_EmployeesAddresses_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="EmployeesAddresses" EntitySet="EmployeesAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesAddresses_AddressType" Association="Self.FK_EmployeesAddresses_AddressType">
+            <End Role="AddressType" EntitySet="AddressType" />
+            <End Role="EmployeesAddresses" EntitySet="EmployeesAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesAddresses_Employees" Association="Self.FK_EmployeesAddresses_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeesAddresses" EntitySet="EmployeesAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_SolutionBase" Association="Self.FK_Events_SolutionBase">
+            <End Role="SolutionBase" EntitySet="SolutionBase" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayOffs_Employees" Association="Self.FK_PayOffs_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PayOffs" EntitySet="PayOffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Positions_Departments" Association="Self.FK_Positions_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Positions" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Positions_Positions" Association="Self.FK_Positions_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Positions1" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Employees_Request" Association="Self.FK_PrivateMessages_Employees_Request">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Employees_Response" Association="Self.FK_PrivateMessages_Employees_Response">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_PrivateMessages_Request" Association="Self.FK_PrivateMessages_PrivateMessages_Request">
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+            <End Role="PrivateMessages1" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_PrivateMessages_Response" Association="Self.FK_PrivateMessages_PrivateMessages_Response">
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+            <End Role="PrivateMessages1" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Status" Association="Self.FK_PrivateMessages_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Topics" Association="Self.FK_PrivateMessages_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_SolutionBase" Association="Self.FK_Status_SolutionBase">
+            <End Role="SolutionBase" EntitySet="SolutionBase" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Departments" Association="Self.FK_Topics_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Positions" Association="Self.FK_Topics_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkSchedule_Days" Association="Self.FK_WorkSchedule_Days">
+            <End Role="Days" EntitySet="Days" />
+            <End Role="WorkSchedule" EntitySet="WorkSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkSchedule_Status" Association="Self.FK_WorkSchedule_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkSchedule" EntitySet="WorkSchedule" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkScheduleExceptions_Status" Association="Self.FK_WorkScheduleExceptions_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkScheduleExceptions" EntitySet="WorkScheduleExceptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkScheduleExceptions_WorkSchedule" Association="Self.FK_WorkScheduleExceptions_WorkSchedule">
+            <End Role="WorkSchedule" EntitySet="WorkSchedule" />
+            <End Role="WorkScheduleExceptions" EntitySet="WorkScheduleExceptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkTime_Calendars" Association="Self.FK_WorkTime_Calendars">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="WorkTime" EntitySet="WorkTime" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkTime_Employees" Association="Self.FK_WorkTime_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="WorkTime" EntitySet="WorkTime" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HRinfoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Address">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StreetId" Type="Int32" Nullable="false" />
+          <Property Name="HouseNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FlatNumber" Type="String" MaxLength="4" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PostalCode" Type="String" MaxLength="6" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CityId" Type="Int32" Nullable="false" />
+          <Property Name="CountryId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="City" Relationship="Self.FK_Addresses_Cities" FromRole="Addresses" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="Self.FK_Addresses_Countries" FromRole="Addresses" ToRole="Countries" />
+          <NavigationProperty Name="Street" Relationship="Self.FK_Addresses_Streets" FromRole="Addresses" ToRole="Streets" />
+          <NavigationProperty Name="EmployeesAddresses" Relationship="Self.FK_EmployeesAddresses_Addresses" FromRole="Addresses" ToRole="EmployeesAddresses" />
+        </EntityType>
+        <EntityType Name="AddressType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="EmployeesAddresses" Relationship="Self.FK_EmployeesAddresses_AddressType" FromRole="AddressType" ToRole="EmployeesAddresses" />
+        </EntityType>
+        <EntityType Name="Calendar">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" />
+          <Property Name="CompanyCalendarId" Type="Int32" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeFrom" Type="Time" Precision="0" />
+          <Property Name="DateTo" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeTo" Type="Time" Precision="0" />
+          <Property Name="WorkDaysNumber" Type="Byte" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="Int32" Nullable="false" />
+          <Property Name="PositionRestriction" Type="Boolean" Nullable="false" />
+          <Property Name="DepartmentRestriction" Type="Boolean" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="ParticipantTotalNumber" Type="Int16" />
+          <Property Name="ParticipantAvailableNumber" Type="Int16" />
+          <NavigationProperty Name="Calendars1" Relationship="Self.FK_Calendars_Calendars_Company" FromRole="Calendars" ToRole="Calendars1" />
+          <NavigationProperty Name="Calendar1" Relationship="Self.FK_Calendars_Calendars_Company" FromRole="Calendars1" ToRole="Calendars" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_Calendars_Employees" FromRole="Calendars" ToRole="Employees" />
+          <NavigationProperty Name="Event" Relationship="Self.FK_Calendars_Events" FromRole="Calendars" ToRole="Events" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Calendars_Status" FromRole="Calendars" ToRole="Status" />
+          <NavigationProperty Name="WorkTimes" Relationship="Self.FK_WorkTime_Calendars" FromRole="Calendars" ToRole="WorkTime" />
+          <NavigationProperty Name="Departments" Relationship="Self.CalendarDepartmentsRestriction" FromRole="Calendars" ToRole="Departments" />
+          <NavigationProperty Name="Positions" Relationship="Self.CalendarPositionsRestriction" FromRole="Calendars" ToRole="Positions" />
+        </EntityType>
+        <EntityType Name="City">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_Cities" FromRole="Cities" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_Countries" FromRole="Countries" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="Day">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="12" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="WorkSchedules" Relationship="Self.FK_WorkSchedule_Days" FromRole="Days" ToRole="WorkSchedule" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentCode" Type="String" MaxLength="2" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="UpDepartmentId" Type="Int32" />
+          <NavigationProperty Name="Departments1" Relationship="Self.FK_Departments_Departments" FromRole="Departments" ToRole="Departments1" />
+          <NavigationProperty Name="Department1" Relationship="Self.FK_Departments_Departments" FromRole="Departments1" ToRole="Departments" />
+          <NavigationProperty Name="Positions" Relationship="Self.FK_Positions_Departments" FromRole="Departments" ToRole="Positions" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK_Topics_Departments" FromRole="Departments" ToRole="Topics" />
+          <NavigationProperty Name="Calendars" Relationship="Self.CalendarDepartmentsRestriction" FromRole="Departments" ToRole="Calendars" />
+        </EntityType>
+        <EntityType Name="EmployeePositionsHistory">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateTo" Type="DateTime" Precision="0" />
+          <Property Name="Salary" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmployeePositionsHistory_Employees" FromRole="EmployeePositionsHistory" ToRole="Employees" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_EmployeePositionsHistory_Positions" FromRole="EmployeePositionsHistory" ToRole="Positions" />
+        </EntityType>
+        <EntityType Name="Employee">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="JobEmail" Type="String" MaxLength="254" FixedLength="false" Unicode="true" />
+          <Property Name="JobPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="HolidayDaysTotal" Type="Int16" Nullable="false" />
+          <Property Name="UsedHolidayDays" Type="Int16" Nullable="false" />
+          <Property Name="SalaryFee" Type="Decimal" Precision="10" Scale="2" />
+          <NavigationProperty Name="Calendars" Relationship="Self.FK_Calendars_Employees" FromRole="Employees" ToRole="Calendars" />
+          <NavigationProperty Name="EmployeePositionsHistories" Relationship="Self.FK_EmployeePositionsHistory_Employees" FromRole="Employees" ToRole="EmployeePositionsHistory" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_Employees_Positions" FromRole="Employees" ToRole="Positions" />
+          <NavigationProperty Name="EmployeesAddresses" Relationship="Self.FK_EmployeesAddresses_Employees" FromRole="Employees" ToRole="EmployeesAddresses" />
+          <NavigationProperty Name="PayOffs" Relationship="Self.FK_PayOffs_Employees" FromRole="Employees" ToRole="PayOffs" />
+          <NavigationProperty Name="PrivateMessages" Relationship="Self.FK_PrivateMessages_Employees_Request" FromRole="Employees" ToRole="PrivateMessages" />
+          <NavigationProperty Name="PrivateMessages1" Relationship="Self.FK_PrivateMessages_Employees_Response" FromRole="Employees" ToRole="PrivateMessages" />
+          <NavigationProperty Name="WorkTimes" Relationship="Self.FK_WorkTime_Employees" FromRole="Employees" ToRole="WorkTime" />
+        </EntityType>
+        <EntityType Name="EmployeesAddress">
+          <Key>
+            <PropertyRef Name="EmployeeId" />
+            <PropertyRef Name="AddressId" />
+            <PropertyRef Name="AddressTypeId" />
+          </Key>
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="AddressId" Type="Int32" Nullable="false" />
+          <Property Name="AddressTypeId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Address" Relationship="Self.FK_EmployeesAddresses_Addresses" FromRole="EmployeesAddresses" ToRole="Addresses" />
+          <NavigationProperty Name="AddressType" Relationship="Self.FK_EmployeesAddresses_AddressType" FromRole="EmployeesAddresses" ToRole="AddressType" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_EmployeesAddresses_Employees" FromRole="EmployeesAddresses" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="40" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="SolutionBaseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Calendars" Relationship="Self.FK_Calendars_Events" FromRole="Events" ToRole="Calendars" />
+          <NavigationProperty Name="SolutionBase" Relationship="Self.FK_Events_SolutionBase" FromRole="Events" ToRole="SolutionBase" />
+        </EntityType>
+        <EntityType Name="News">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="News1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateFrom" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DateTo" Type="DateTime" Precision="0" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PayOff">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_PayOffs_Employees" FromRole="PayOffs" ToRole="Employees" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="PositionCode" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <Property Name="UpPositionId" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Positions_Departments" FromRole="Positions" ToRole="Departments" />
+          <NavigationProperty Name="EmployeePositionsHistories" Relationship="Self.FK_EmployeePositionsHistory_Positions" FromRole="Positions" ToRole="EmployeePositionsHistory" />
+          <NavigationProperty Name="Employees" Relationship="Self.FK_Employees_Positions" FromRole="Positions" ToRole="Employees" />
+          <NavigationProperty Name="Positions1" Relationship="Self.FK_Positions_Positions" FromRole="Positions" ToRole="Positions1" />
+          <NavigationProperty Name="Position1" Relationship="Self.FK_Positions_Positions" FromRole="Positions1" ToRole="Positions" />
+          <NavigationProperty Name="Topics" Relationship="Self.FK_Topics_Positions" FromRole="Positions" ToRole="Topics" />
+          <NavigationProperty Name="Calendars" Relationship="Self.CalendarPositionsRestriction" FromRole="Positions" ToRole="Calendars" />
+        </EntityType>
+        <EntityType Name="PrivateMessage">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="TopicId" Type="Int32" Nullable="false" />
+          <Property Name="Message" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <Property Name="ResponseEmployeeId" Type="Int32" />
+          <Property Name="RequestId" Type="Int32" />
+          <Property Name="ResponseId" Type="Int32" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_PrivateMessages_Employees_Request" FromRole="PrivateMessages" ToRole="Employees" />
+          <NavigationProperty Name="Employee1" Relationship="Self.FK_PrivateMessages_Employees_Response" FromRole="PrivateMessages" ToRole="Employees" />
+          <NavigationProperty Name="PrivateMessages1" Relationship="Self.FK_PrivateMessages_PrivateMessages_Request" FromRole="PrivateMessages" ToRole="PrivateMessages1" />
+          <NavigationProperty Name="PrivateMessage1" Relationship="Self.FK_PrivateMessages_PrivateMessages_Request" FromRole="PrivateMessages1" ToRole="PrivateMessages" />
+          <NavigationProperty Name="PrivateMessages11" Relationship="Self.FK_PrivateMessages_PrivateMessages_Response" FromRole="PrivateMessages" ToRole="PrivateMessages1" />
+          <NavigationProperty Name="PrivateMessage2" Relationship="Self.FK_PrivateMessages_PrivateMessages_Response" FromRole="PrivateMessages1" ToRole="PrivateMessages" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_PrivateMessages_Status" FromRole="PrivateMessages" ToRole="Status" />
+          <NavigationProperty Name="Topic" Relationship="Self.FK_PrivateMessages_Topics" FromRole="PrivateMessages" ToRole="Topics" />
+        </EntityType>
+        <EntityType Name="SolutionBase">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Events" Relationship="Self.FK_Events_SolutionBase" FromRole="SolutionBase" ToRole="Events" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_Status_SolutionBase" FromRole="SolutionBase" ToRole="Status" />
+        </EntityType>
+        <EntityType Name="Status">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="OrderPosition" Type="Byte" Nullable="false" />
+          <Property Name="SolutionBaseId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Calendars" Relationship="Self.FK_Calendars_Status" FromRole="Status" ToRole="Calendars" />
+          <NavigationProperty Name="PrivateMessages" Relationship="Self.FK_PrivateMessages_Status" FromRole="Status" ToRole="PrivateMessages" />
+          <NavigationProperty Name="SolutionBase" Relationship="Self.FK_Status_SolutionBase" FromRole="Status" ToRole="SolutionBase" />
+          <NavigationProperty Name="WorkSchedules" Relationship="Self.FK_WorkSchedule_Status" FromRole="Status" ToRole="WorkSchedule" />
+          <NavigationProperty Name="WorkScheduleExceptions" Relationship="Self.FK_WorkScheduleExceptions_Status" FromRole="Status" ToRole="WorkScheduleExceptions" />
+        </EntityType>
+        <EntityType Name="Street">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="60" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Addresses" Relationship="Self.FK_Addresses_Streets" FromRole="Streets" ToRole="Addresses" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Topic">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="80" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartmentId" Type="Int32" />
+          <Property Name="PositionId" Type="Int32" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Topics_Departments" FromRole="Topics" ToRole="Departments" />
+          <NavigationProperty Name="Position" Relationship="Self.FK_Topics_Positions" FromRole="Topics" ToRole="Positions" />
+          <NavigationProperty Name="PrivateMessages" Relationship="Self.FK_PrivateMessages_Topics" FromRole="Topics" ToRole="PrivateMessages" />
+        </EntityType>
+        <EntityType Name="WorkSchedule">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DayId" Type="Int32" Nullable="false" />
+          <Property Name="WorkDay" Type="Boolean" Nullable="false" />
+          <Property Name="TimeFrom" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="TimeTo" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Day" Relationship="Self.FK_WorkSchedule_Days" FromRole="WorkSchedule" ToRole="Days" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_WorkSchedule_Status" FromRole="WorkSchedule" ToRole="Status" />
+          <NavigationProperty Name="WorkScheduleExceptions" Relationship="Self.FK_WorkScheduleExceptions_WorkSchedule" FromRole="WorkSchedule" ToRole="WorkScheduleExceptions" />
+        </EntityType>
+        <EntityType Name="WorkScheduleException">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="WorkScheduleId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeFrom" Type="Time" Precision="0" />
+          <Property Name="TimeTo" Type="Time" Precision="0" />
+          <Property Name="StatusId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Status" Relationship="Self.FK_WorkScheduleExceptions_Status" FromRole="WorkScheduleExceptions" ToRole="Status" />
+          <NavigationProperty Name="WorkSchedule" Relationship="Self.FK_WorkScheduleExceptions_WorkSchedule" FromRole="WorkScheduleExceptions" ToRole="WorkSchedule" />
+        </EntityType>
+        <EntityType Name="WorkTime">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EmployeeId" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="TimeFrom" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="TimeTo" Type="Time" Nullable="false" Precision="0" />
+          <Property Name="WorkDay" Type="Boolean" Nullable="false" />
+          <Property Name="CalendarId" Type="Int32" />
+          <NavigationProperty Name="Calendar" Relationship="Self.FK_WorkTime_Calendars" FromRole="WorkTime" ToRole="Calendars" />
+          <NavigationProperty Name="Employee" Relationship="Self.FK_WorkTime_Employees" FromRole="WorkTime" ToRole="Employees" />
+        </EntityType>
+        <Association Name="FK_Addresses_Cities">
+          <End Role="Cities" Type="Self.City" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cities">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_Countries">
+          <End Role="Countries" Type="Self.Country" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Countries">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="CountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Addresses_Streets">
+          <End Role="Streets" Type="Self.Street" Multiplicity="1" />
+          <End Role="Addresses" Type="Self.Address" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Streets">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Addresses">
+              <PropertyRef Name="StreetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesAddresses_Addresses">
+          <End Role="Addresses" Type="Self.Address" Multiplicity="1" />
+          <End Role="EmployeesAddresses" Type="Self.EmployeesAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Addresses">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesAddresses">
+              <PropertyRef Name="AddressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesAddresses_AddressType">
+          <End Role="AddressType" Type="Self.AddressType" Multiplicity="1" />
+          <End Role="EmployeesAddresses" Type="Self.EmployeesAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesAddresses">
+              <PropertyRef Name="AddressTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Calendars_Company">
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="0..1" />
+          <End Role="Calendars1" Type="Self.Calendar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars1">
+              <PropertyRef Name="CompanyCalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Events">
+          <End Role="Events" Type="Self.Event" Multiplicity="1" />
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Events">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Calendars_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Calendars">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkTime_Calendars">
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="0..1" />
+          <End Role="WorkTime" Type="Self.WorkTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calendars">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkTime">
+              <PropertyRef Name="CalendarId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkSchedule_Days">
+          <End Role="Days" Type="Self.Day" Multiplicity="1" />
+          <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Days">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkSchedule">
+              <PropertyRef Name="DayId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Departments_Departments">
+          <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Departments1" Type="Self.Department" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Departments1">
+              <PropertyRef Name="UpDepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Positions_Departments">
+          <End Role="Departments" Type="Self.Department" Multiplicity="1" />
+          <End Role="Positions" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Positions">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Departments">
+          <End Role="Departments" Type="Self.Department" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Departments">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeePositionsHistory_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EmployeePositionsHistory" Type="Self.EmployeePositionsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeePositionsHistory">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeePositionsHistory_Positions">
+          <End Role="Positions" Type="Self.Position" Multiplicity="1" />
+          <End Role="EmployeePositionsHistory" Type="Self.EmployeePositionsHistory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeePositionsHistory">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Employees_Positions">
+          <End Role="Positions" Type="Self.Position" Multiplicity="1" />
+          <End Role="Employees" Type="Self.Employee" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Employees">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_EmployeesAddresses_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="EmployeesAddresses" Type="Self.EmployeesAddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="EmployeesAddresses">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PayOffs_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="PayOffs" Type="Self.PayOff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PayOffs">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Employees_Request">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Employees_Response">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="0..1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="ResponseEmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkTime_Employees">
+          <End Role="Employees" Type="Self.Employee" Multiplicity="1" />
+          <End Role="WorkTime" Type="Self.WorkTime" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Employees">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkTime">
+              <PropertyRef Name="EmployeeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Events_SolutionBase">
+          <End Role="SolutionBase" Type="Self.SolutionBase" Multiplicity="1" />
+          <End Role="Events" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolutionBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Events">
+              <PropertyRef Name="SolutionBaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Positions_Positions">
+          <End Role="Positions" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Positions1" Type="Self.Position" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Positions1">
+              <PropertyRef Name="UpPositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Topics_Positions">
+          <End Role="Positions" Type="Self.Position" Multiplicity="0..1" />
+          <End Role="Topics" Type="Self.Topic" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Positions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Topics">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_PrivateMessages_Request">
+          <End Role="PrivateMessages" Type="Self.PrivateMessage" Multiplicity="0..1" />
+          <End Role="PrivateMessages1" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrivateMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages1">
+              <PropertyRef Name="RequestId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_PrivateMessages_Response">
+          <End Role="PrivateMessages" Type="Self.PrivateMessage" Multiplicity="0..1" />
+          <End Role="PrivateMessages1" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PrivateMessages">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages1">
+              <PropertyRef Name="ResponseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PrivateMessages_Topics">
+          <End Role="Topics" Type="Self.Topic" Multiplicity="1" />
+          <End Role="PrivateMessages" Type="Self.PrivateMessage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Topics">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PrivateMessages">
+              <PropertyRef Name="TopicId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Status_SolutionBase">
+          <End Role="SolutionBase" Type="Self.SolutionBase" Multiplicity="1" />
+          <End Role="Status" Type="Self.Status" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SolutionBase">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Status">
+              <PropertyRef Name="SolutionBaseId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkSchedule_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkSchedule">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkScheduleExceptions_Status">
+          <End Role="Status" Type="Self.Status" Multiplicity="1" />
+          <End Role="WorkScheduleExceptions" Type="Self.WorkScheduleException" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Status">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkScheduleExceptions">
+              <PropertyRef Name="StatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_WorkScheduleExceptions_WorkSchedule">
+          <End Role="WorkSchedule" Type="Self.WorkSchedule" Multiplicity="1" />
+          <End Role="WorkScheduleExceptions" Type="Self.WorkScheduleException" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="WorkSchedule">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="WorkScheduleExceptions">
+              <PropertyRef Name="WorkScheduleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CalendarDepartmentsRestriction">
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <End Role="Departments" Type="Self.Department" Multiplicity="*" />
+        </Association>
+        <Association Name="CalendarPositionsRestriction">
+          <End Role="Calendars" Type="Self.Calendar" Multiplicity="*" />
+          <End Role="Positions" Type="Self.Position" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="HRinfoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Addresses" EntityType="Self.Address" />
+          <EntitySet Name="AddressTypes" EntityType="Self.AddressType" />
+          <EntitySet Name="Calendars" EntityType="Self.Calendar" />
+          <EntitySet Name="Cities" EntityType="Self.City" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="Days" EntityType="Self.Day" />
+          <EntitySet Name="Departments" EntityType="Self.Department" />
+          <EntitySet Name="EmployeePositionsHistories" EntityType="Self.EmployeePositionsHistory" />
+          <EntitySet Name="Employees" EntityType="Self.Employee" />
+          <EntitySet Name="EmployeesAddresses" EntityType="Self.EmployeesAddress" />
+          <EntitySet Name="Events" EntityType="Self.Event" />
+          <EntitySet Name="News" EntityType="Self.News" />
+          <EntitySet Name="PayOffs" EntityType="Self.PayOff" />
+          <EntitySet Name="Positions" EntityType="Self.Position" />
+          <EntitySet Name="PrivateMessages" EntityType="Self.PrivateMessage" />
+          <EntitySet Name="SolutionBases" EntityType="Self.SolutionBase" />
+          <EntitySet Name="Status" EntityType="Self.Status" />
+          <EntitySet Name="Streets" EntityType="Self.Street" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Topics" EntityType="Self.Topic" />
+          <EntitySet Name="WorkSchedules" EntityType="Self.WorkSchedule" />
+          <EntitySet Name="WorkScheduleExceptions" EntityType="Self.WorkScheduleException" />
+          <EntitySet Name="WorkTimes" EntityType="Self.WorkTime" />
+          <AssociationSet Name="FK_Addresses_Cities" Association="Self.FK_Addresses_Cities">
+            <End Role="Cities" EntitySet="Cities" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_Countries" Association="Self.FK_Addresses_Countries">
+            <End Role="Countries" EntitySet="Countries" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Addresses_Streets" Association="Self.FK_Addresses_Streets">
+            <End Role="Streets" EntitySet="Streets" />
+            <End Role="Addresses" EntitySet="Addresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesAddresses_Addresses" Association="Self.FK_EmployeesAddresses_Addresses">
+            <End Role="Addresses" EntitySet="Addresses" />
+            <End Role="EmployeesAddresses" EntitySet="EmployeesAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesAddresses_AddressType" Association="Self.FK_EmployeesAddresses_AddressType">
+            <End Role="AddressType" EntitySet="AddressTypes" />
+            <End Role="EmployeesAddresses" EntitySet="EmployeesAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Calendars_Company" Association="Self.FK_Calendars_Calendars_Company">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="Calendars1" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Employees" Association="Self.FK_Calendars_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Events" Association="Self.FK_Calendars_Events">
+            <End Role="Events" EntitySet="Events" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Calendars_Status" Association="Self.FK_Calendars_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="Calendars" EntitySet="Calendars" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkTime_Calendars" Association="Self.FK_WorkTime_Calendars">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="WorkTime" EntitySet="WorkTimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkSchedule_Days" Association="Self.FK_WorkSchedule_Days">
+            <End Role="Days" EntitySet="Days" />
+            <End Role="WorkSchedule" EntitySet="WorkSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Departments_Departments" Association="Self.FK_Departments_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Departments1" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Positions_Departments" Association="Self.FK_Positions_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Positions" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Departments" Association="Self.FK_Topics_Departments">
+            <End Role="Departments" EntitySet="Departments" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeePositionsHistory_Employees" Association="Self.FK_EmployeePositionsHistory_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeePositionsHistory" EntitySet="EmployeePositionsHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeePositionsHistory_Positions" Association="Self.FK_EmployeePositionsHistory_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="EmployeePositionsHistory" EntitySet="EmployeePositionsHistories" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Employees_Positions" Association="Self.FK_Employees_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Employees" EntitySet="Employees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_EmployeesAddresses_Employees" Association="Self.FK_EmployeesAddresses_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="EmployeesAddresses" EntitySet="EmployeesAddresses" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PayOffs_Employees" Association="Self.FK_PayOffs_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PayOffs" EntitySet="PayOffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Employees_Request" Association="Self.FK_PrivateMessages_Employees_Request">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Employees_Response" Association="Self.FK_PrivateMessages_Employees_Response">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkTime_Employees" Association="Self.FK_WorkTime_Employees">
+            <End Role="Employees" EntitySet="Employees" />
+            <End Role="WorkTime" EntitySet="WorkTimes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Events_SolutionBase" Association="Self.FK_Events_SolutionBase">
+            <End Role="SolutionBase" EntitySet="SolutionBases" />
+            <End Role="Events" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Positions_Positions" Association="Self.FK_Positions_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Positions1" EntitySet="Positions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Topics_Positions" Association="Self.FK_Topics_Positions">
+            <End Role="Positions" EntitySet="Positions" />
+            <End Role="Topics" EntitySet="Topics" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_PrivateMessages_Request" Association="Self.FK_PrivateMessages_PrivateMessages_Request">
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+            <End Role="PrivateMessages1" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_PrivateMessages_Response" Association="Self.FK_PrivateMessages_PrivateMessages_Response">
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+            <End Role="PrivateMessages1" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Status" Association="Self.FK_PrivateMessages_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PrivateMessages_Topics" Association="Self.FK_PrivateMessages_Topics">
+            <End Role="Topics" EntitySet="Topics" />
+            <End Role="PrivateMessages" EntitySet="PrivateMessages" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Status_SolutionBase" Association="Self.FK_Status_SolutionBase">
+            <End Role="SolutionBase" EntitySet="SolutionBases" />
+            <End Role="Status" EntitySet="Status" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkSchedule_Status" Association="Self.FK_WorkSchedule_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkSchedule" EntitySet="WorkSchedules" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkScheduleExceptions_Status" Association="Self.FK_WorkScheduleExceptions_Status">
+            <End Role="Status" EntitySet="Status" />
+            <End Role="WorkScheduleExceptions" EntitySet="WorkScheduleExceptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_WorkScheduleExceptions_WorkSchedule" Association="Self.FK_WorkScheduleExceptions_WorkSchedule">
+            <End Role="WorkSchedule" EntitySet="WorkSchedules" />
+            <End Role="WorkScheduleExceptions" EntitySet="WorkScheduleExceptions" />
+          </AssociationSet>
+          <AssociationSet Name="CalendarDepartmentsRestriction" Association="Self.CalendarDepartmentsRestriction">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="Departments" EntitySet="Departments" />
+          </AssociationSet>
+          <AssociationSet Name="CalendarPositionsRestriction" Association="Self.CalendarPositionsRestriction">
+            <End Role="Calendars" EntitySet="Calendars" />
+            <End Role="Positions" EntitySet="Positions" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HRinfoModelStoreContainer" CdmEntityContainer="HRinfoEntities">
+          <EntitySetMapping Name="Addresses">
+            <EntityTypeMapping TypeName="HRinfoModel.Address">
+              <MappingFragment StoreEntitySet="Addresses">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="StreetId" ColumnName="StreetId" />
+                <ScalarProperty Name="HouseNumber" ColumnName="HouseNumber" />
+                <ScalarProperty Name="FlatNumber" ColumnName="FlatNumber" />
+                <ScalarProperty Name="PostalCode" ColumnName="PostalCode" />
+                <ScalarProperty Name="CityId" ColumnName="CityId" />
+                <ScalarProperty Name="CountryId" ColumnName="CountryId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AddressTypes">
+            <EntityTypeMapping TypeName="HRinfoModel.AddressType">
+              <MappingFragment StoreEntitySet="AddressType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calendars">
+            <EntityTypeMapping TypeName="HRinfoModel.Calendar">
+              <MappingFragment StoreEntitySet="Calendars">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="CompanyCalendarId" ColumnName="CompanyCalendarId" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="WorkDaysNumber" ColumnName="WorkDaysNumber" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="PositionRestriction" ColumnName="PositionRestriction" />
+                <ScalarProperty Name="DepartmentRestriction" ColumnName="DepartmentRestriction" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ParticipantTotalNumber" ColumnName="ParticipantTotalNumber" />
+                <ScalarProperty Name="ParticipantAvailableNumber" ColumnName="ParticipantAvailableNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cities">
+            <EntityTypeMapping TypeName="HRinfoModel.City">
+              <MappingFragment StoreEntitySet="Cities">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="HRinfoModel.Country">
+              <MappingFragment StoreEntitySet="Countries">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Days">
+            <EntityTypeMapping TypeName="HRinfoModel.Day">
+              <MappingFragment StoreEntitySet="Days">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Departments">
+            <EntityTypeMapping TypeName="HRinfoModel.Department">
+              <MappingFragment StoreEntitySet="Departments">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentCode" ColumnName="DepartmentCode" />
+                <ScalarProperty Name="UpDepartmentId" ColumnName="UpDepartmentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeePositionsHistories">
+            <EntityTypeMapping TypeName="HRinfoModel.EmployeePositionsHistory">
+              <MappingFragment StoreEntitySet="EmployeePositionsHistory">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="Salary" ColumnName="Salary" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Employees">
+            <EntityTypeMapping TypeName="HRinfoModel.Employee">
+              <MappingFragment StoreEntitySet="Employees">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="JobEmail" ColumnName="JobEmail" />
+                <ScalarProperty Name="JobPhone" ColumnName="JobPhone" />
+                <ScalarProperty Name="HolidayDaysTotal" ColumnName="HolidayDaysTotal" />
+                <ScalarProperty Name="UsedHolidayDays" ColumnName="UsedHolidayDays" />
+                <ScalarProperty Name="SalaryFee" ColumnName="SalaryFee" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EmployeesAddresses">
+            <EntityTypeMapping TypeName="HRinfoModel.EmployeesAddress">
+              <MappingFragment StoreEntitySet="EmployeesAddresses">
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="AddressId" ColumnName="AddressId" />
+                <ScalarProperty Name="AddressTypeId" ColumnName="AddressTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="HRinfoModel.Event">
+              <MappingFragment StoreEntitySet="Events">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="SolutionBaseId" ColumnName="SolutionBaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="News">
+            <EntityTypeMapping TypeName="HRinfoModel.News">
+              <MappingFragment StoreEntitySet="News">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="News1" ColumnName="News" />
+                <ScalarProperty Name="DateFrom" ColumnName="DateFrom" />
+                <ScalarProperty Name="DateTo" ColumnName="DateTo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PayOffs">
+            <EntityTypeMapping TypeName="HRinfoModel.PayOff">
+              <MappingFragment StoreEntitySet="PayOffs">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="HRinfoModel.Position">
+              <MappingFragment StoreEntitySet="Positions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PositionCode" ColumnName="PositionCode" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="UpPositionId" ColumnName="UpPositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PrivateMessages">
+            <EntityTypeMapping TypeName="HRinfoModel.PrivateMessage">
+              <MappingFragment StoreEntitySet="PrivateMessages">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="TopicId" ColumnName="TopicId" />
+                <ScalarProperty Name="Message" ColumnName="Message" />
+                <ScalarProperty Name="DateTime" ColumnName="DateTime" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+                <ScalarProperty Name="ResponseEmployeeId" ColumnName="ResponseEmployeeId" />
+                <ScalarProperty Name="RequestId" ColumnName="RequestId" />
+                <ScalarProperty Name="ResponseId" ColumnName="ResponseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SolutionBases">
+            <EntityTypeMapping TypeName="HRinfoModel.SolutionBase">
+              <MappingFragment StoreEntitySet="SolutionBase">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Status">
+            <EntityTypeMapping TypeName="HRinfoModel.Status">
+              <MappingFragment StoreEntitySet="Status">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="OrderPosition" ColumnName="OrderPosition" />
+                <ScalarProperty Name="SolutionBaseId" ColumnName="SolutionBaseId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Streets">
+            <EntityTypeMapping TypeName="HRinfoModel.Street">
+              <MappingFragment StoreEntitySet="Streets">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="HRinfoModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Topics">
+            <EntityTypeMapping TypeName="HRinfoModel.Topic">
+              <MappingFragment StoreEntitySet="Topics">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkSchedules">
+            <EntityTypeMapping TypeName="HRinfoModel.WorkSchedule">
+              <MappingFragment StoreEntitySet="WorkSchedule">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DayId" ColumnName="DayId" />
+                <ScalarProperty Name="WorkDay" ColumnName="WorkDay" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkScheduleExceptions">
+            <EntityTypeMapping TypeName="HRinfoModel.WorkScheduleException">
+              <MappingFragment StoreEntitySet="WorkScheduleExceptions">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="WorkScheduleId" ColumnName="WorkScheduleId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="StatusId" ColumnName="StatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WorkTimes">
+            <EntityTypeMapping TypeName="HRinfoModel.WorkTime">
+              <MappingFragment StoreEntitySet="WorkTime">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="EmployeeId" ColumnName="EmployeeId" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="TimeFrom" ColumnName="TimeFrom" />
+                <ScalarProperty Name="TimeTo" ColumnName="TimeTo" />
+                <ScalarProperty Name="WorkDay" ColumnName="WorkDay" />
+                <ScalarProperty Name="CalendarId" ColumnName="CalendarId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="CalendarDepartmentsRestriction" TypeName="HRinfoModel.CalendarDepartmentsRestriction" StoreEntitySet="CalendarDepartmentsRestriction">
+            <EndProperty Name="Calendars">
+              <ScalarProperty Name="Id" ColumnName="CalendarId" />
+            </EndProperty>
+            <EndProperty Name="Departments">
+              <ScalarProperty Name="Id" ColumnName="DepartmentId" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="CalendarPositionsRestriction" TypeName="HRinfoModel.CalendarPositionsRestriction" StoreEntitySet="CalendarPositionsRestriction">
+            <EndProperty Name="Calendars">
+              <ScalarProperty Name="Id" ColumnName="CalendarId" />
+            </EndProperty>
+            <EndProperty Name="Positions">
+              <ScalarProperty Name="Id" ColumnName="PositionId" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
