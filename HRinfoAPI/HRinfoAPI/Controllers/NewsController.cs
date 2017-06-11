@@ -78,11 +78,4 @@ namespace HRinfoAPI.Controllers
             return result.ToList();
         }
     }
-
-    public class NewsResults
-    {
-        public string ResultNews { get; set; }
-        public DateTime? ResultDateFrom { get; set; }
-        public DateTime? ResultDateTo { get; set; }
-    }
 }
