@@ -9,6 +9,7 @@ using HRinfoAPI.Models;
 namespace HRinfoAPI.Controllers
 {
     [Authorize]
+    [RoutePrefix("api/News")]
     public class NewsController : ApiController
     {
         HRinfoEntities database = new HRinfoEntities();
@@ -34,6 +35,7 @@ namespace HRinfoAPI.Controllers
         /// Get top number of records order by id descending.
         /// </summary>
         /// <returns>NewsResults</returns>
+        [Route("GetLastAdd")]
         public IEnumerable<NewsResults> GetLastAdd(int numberOfRecords)
         {
             var result = database.News.Where(news => news.IsActive == true
@@ -57,6 +59,7 @@ namespace HRinfoAPI.Controllers
         /// <param name="skipNumber">Number of records to skip</param>
         /// <param name="takeNumber">Number of records to take</param>
         /// <returns></returns>
+        [Route("GetRecords")]
         public IEnumerable<NewsResults> GetRecords(int skipNumber, int takeNumber)
         {
             var result = database.News.Where(news => news.IsActive == true
