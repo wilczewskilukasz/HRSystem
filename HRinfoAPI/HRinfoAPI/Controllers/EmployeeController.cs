@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("api/Employee")]
     public class EmployeeController : ApiController
     {
@@ -63,10 +63,11 @@ namespace HRinfoAPI.Controllers
 
         // TODO: znalezc pracownika po imieniu i nazwisku
         [Route("FindEmployeeContactData")]
-        public IEnumerable<EmployeeContactData> FindEmployeeContactData(int employeeId)
+        public EmployeeContactData FindEmployeeContactData(int employeeId)
         {
             var result = from e in database.Employees
                          join p in database.Positions on e.PositionId equals p.Id
+                         join d in database.Departments on p.DepartmentId equals d.Id
                          where e.Id == employeeId
                          select new EmployeeContactData()
                          {
@@ -74,14 +75,15 @@ namespace HRinfoAPI.Controllers
                              LastName = e.LastName,
                              PhoneNumber = e.JobPhone,
                              Email = e.JobEmail,
-                             Position = p.Name
+                             Position = p.Name,
+                             Department = d.Name
                          };
 
-            return result.ToList();
+            return result.Single();
         }
         
         [Route("CurrentUserContactData")]
-        public IEnumerable<EmployeeContactData> CurrentUserContactData()
+        public EmployeeContactData CurrentUserContactData()
         {
             this.GetEmployeeId();
 
@@ -97,7 +99,7 @@ namespace HRinfoAPI.Controllers
                              Position = p.Name
                          };
 
-            return result.ToList();
+            return result.Single();
         }
 
         [Route("CurrentUserAddress")]
@@ -109,19 +111,19 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("CurrentUserAddress")]
-        public IEnumerable<EmployeeAddress> CurrentUserAddress(int addressTypeId)
+        public EmployeeAddress CurrentUserAddress(int addressTypeId)
         {
             this.GetEmployeeId();
 
-            return this.GetEmployeeAddress(null, addressTypeId);
+            return this.GetEmployeeAddress(null, addressTypeId).Single();
         }
 
         [Route("CurrentUserAddress")]
-        public IEnumerable<EmployeeAddress> CurrentUserAddress(string addressTypeName)
+        public EmployeeAddress CurrentUserAddress(string addressTypeName)
         {
             this.GetEmployeeId();
 
-            return this.GetEmployeeAddress(null, null, addressTypeName);
+            return this.GetEmployeeAddress(null, null, addressTypeName).Single();
         }
 
         [Route("Salaries")]
@@ -136,5 +138,31 @@ namespace HRinfoAPI.Controllers
 
             return result.ToList();
         }
+
+        [Route("PrivateData")]
+        public EmployeeData PrivateData()
+        {
+            this.GetEmployeeId();
+
+            var result = from e in database.Employees
+                         where e.Id == workerId
+                         select new EmployeeData()
+                         {
+                             FirstName = e.FirstName,
+                             LastName = e.LastName,
+                             PhoneNumber = e.JobPhone,
+                             Email = e.JobEmail,
+                             SalaryFee = e.SalaryFee,
+                             PrivatePhoneNumber = e.PhoneNumber,
+                             PrivateEmail = e.Email,
+                             HolidayDaysTotal = e.HolidayDaysTotal,
+                             UsedHolidayDays = e.UsedHolidayDays
+                         };
+
+            return result.Single();
+        }
+
+
+        // TODO: do edycji adresy i dane kontaktowe pracownika
     }
 }

@@ -275,16 +275,12 @@
     <Compile Include="Models\Employee.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeAddress.cs" />
-    <Compile Include="Models\EmployeeContactData.cs" />
-    <Compile Include="Models\EmployeeData.cs" />
     <Compile Include="Models\EmployeePositionsHistory.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\EmployeesAddress.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\EmployeeSalaries.cs" />
     <Compile Include="Models\Event.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
@@ -303,11 +299,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HRinfoModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\HRinfoViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\News.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\NewsResults.cs" />
     <Compile Include="Models\PayOff.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
@@ -424,6 +420,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Default\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
