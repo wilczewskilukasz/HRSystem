@@ -9,12 +9,13 @@ using HRinfoAPI.Models;
 namespace HRinfoAPI.Controllers
 {
     [Authorize]
-    [RoutePrefix("api/News")]
-    public class NewsController : ApiController
+    [RoutePrefix("api/Company")]
+    public class CompanyInfoController : ApiController
     {
         HRinfoEntities database = new HRinfoEntities();
 
-        public IEnumerable<NewsResults> Get()
+        [Route("News")]
+        public IEnumerable<NewsResults> News()
         {
             var result = from news in database.News
                          where news.IsActive == true
@@ -35,8 +36,8 @@ namespace HRinfoAPI.Controllers
         /// Get top number of records order by id descending.
         /// </summary>
         /// <returns>NewsResults</returns>
-        [Route("GetLastAdd")]
-        public IEnumerable<NewsResults> GetLastAdd(int numberOfRecords)
+        [Route("NewsLastAdd")]
+        public IEnumerable<NewsResults> NewsLastAdd(int numberOfRecords)
         {
             var result = database.News.Where(news => news.IsActive == true
                     && (news.DateFrom == null || news.DateFrom <= DateTime.UtcNow)
@@ -59,8 +60,8 @@ namespace HRinfoAPI.Controllers
         /// <param name="skipNumber">Number of records to skip</param>
         /// <param name="takeNumber">Number of records to take</param>
         /// <returns></returns>
-        [Route("GetRecords")]
-        public IEnumerable<NewsResults> GetRecords(int skipNumber, int takeNumber)
+        [Route("NewsByRecords")]
+        public IEnumerable<NewsResults> NewsRecords(int skipNumber, int takeNumber)
         {
             var result = database.News.Where(news => news.IsActive == true
                     && (news.DateFrom == null || news.DateFrom <= DateTime.UtcNow)
@@ -77,5 +78,7 @@ namespace HRinfoAPI.Controllers
 
             return result.ToList();
         }
+
+
     }
 }
