@@ -30,8 +30,28 @@ namespace HRinfoAPI.Controllers
         // GET: api/PrivateMessages
         public IQueryable<PrivateMessage> GetPrivateMessages()
         {
-            return db.PrivateMessages;
+            this.GetEmployeeId();
+
+            var result = (from p in db.PrivateMessages
+                         where p.EmployeeId == workerId
+                         select p)
+                         .Union(from r in db.PrivateMessages
+                          join p in db.PrivateMessages on r.RequestId equals p.Id
+                          where p.EmployeeId == workerId
+                          select r)
+                         .Union(from r in db.PrivateMessages
+                          join p in db.PrivateMessages on r.ResponseId equals p.Id
+                          where p.EmployeeId == workerId
+                          select r);
+
+            return result.OrderByDescending(r => r.Id);
         }
+
+        // GET: api/PrivateMessages
+        /*public IQueryable<PrivateMessage> GetPrivateMessages()
+        {
+            return db.PrivateMessages;
+        }*/
 
         // GET: api/PrivateMessages/5
         [ResponseType(typeof(PrivateMessage))]
