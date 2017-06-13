@@ -14,8 +14,7 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: uncomment
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("Messages")]
     public class PrivateMessagesController : ApiController
     {
@@ -46,12 +45,6 @@ namespace HRinfoAPI.Controllers
 
             return result.OrderByDescending(r => r.Id);
         }
-
-        // GET: api/PrivateMessages
-        /*public IQueryable<PrivateMessage> GetPrivateMessages()
-        {
-            return db.PrivateMessages;
-        }*/
 
         // GET: api/PrivateMessages/5
         [ResponseType(typeof(PrivateMessage))]
