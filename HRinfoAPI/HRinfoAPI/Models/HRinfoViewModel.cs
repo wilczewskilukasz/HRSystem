@@ -27,6 +27,14 @@ namespace HRinfoAPI.Models
         public int AddressTypeId { get; set; }
     }
 
+    public class EmployeeWorker
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Position { get; set; }
+        public string Department { get; set; }
+    }
+
     public class EmployeeContactData
     {
         public string FirstName { get; set; }

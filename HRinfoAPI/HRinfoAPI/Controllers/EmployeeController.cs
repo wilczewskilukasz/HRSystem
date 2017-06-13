@@ -14,6 +14,7 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
+    // TODO: uncomment
     //[Authorize]
     [RoutePrefix("api/Employee")]
     public class EmployeeController : ApiController
@@ -149,22 +150,44 @@ namespace HRinfoAPI.Controllers
             return country;
         }
 
-        // TODO: znalezc pracownika po imieniu i nazwisku
-        [Route("FindEmployeeContactData")]
+        [Route("FindEmployee")]
         [HttpGet]
         public EmployeeContactData FindEmployeeContactData(int employeeId)
         {
             return this.GetEmployeeContactData(employeeId);
         }
-        
-        [Route("CurrentUserContactData")]
+
+        [Route("FindEmployee")]
+        public IEnumerable<EmployeeContactData> FindByEmployeeWorker(EmployeeWorker employeeWorker)
+        {
+            var result = from e in database.Employees
+                         join p in database.Positions on e.PositionId equals p.Id
+                         join d in database.Departments on p.DepartmentId equals d.Id
+                         where (e.FirstName == employeeWorker.FirstName || String.IsNullOrEmpty(employeeWorker.FirstName))
+                            && (e.LastName == employeeWorker.LastName || String.IsNullOrEmpty(employeeWorker.LastName))
+                            && (p.Name == employeeWorker.Position || String.IsNullOrEmpty(employeeWorker.Position))
+                            && (d.Name == employeeWorker.Department || String.IsNullOrEmpty(employeeWorker.Department))
+                         select new EmployeeContactData()
+                         {
+                             FirstName = e.FirstName,
+                             LastName = e.LastName,
+                             PhoneNumber = e.JobPhone,
+                             Email = e.JobEmail,
+                             Position = p.Name,
+                             Department = d.Name
+                         };
+
+            return result.ToList();
+        }
+
+        [Route("ContactData")]
         public EmployeeContactData CurrentUserContactData()
         {
             this.GetEmployeeId();
             return this.GetEmployeeContactData((int)workerId);
         }
 
-        [Route("CurrentUserAddress")]
+        [Route("Address")]
         public IEnumerable<AddressEmployee> CurrentUserAddresses()
         {
             this.GetEmployeeId();
@@ -172,7 +195,7 @@ namespace HRinfoAPI.Controllers
             return this.GetEmployeeAddress();
         }
 
-        [Route("CurrentUserAddress")]
+        [Route("Address")]
         [HttpGet]
         public AddressEmployee CurrentUserAddress(int addressTypeId)
         {
@@ -181,7 +204,7 @@ namespace HRinfoAPI.Controllers
             return this.GetEmployeeAddress(null, addressTypeId).Single();
         }
 
-        [Route("CurrentUserAddress")]
+        [Route("Address")]
         [HttpGet]
         public AddressEmployee CurrentUserAddress(string addressTypeName)
         {
@@ -225,7 +248,26 @@ namespace HRinfoAPI.Controllers
 
             return result.Single();
         }
-        
+
+        [Route("PrivateData")]
+        [HttpPut]
+        public async Task<IHttpActionResult> PutPersonalData(EmployeeData employeeData)
+        {
+            this.GetEmployeeId();
+
+            Employee employee = database.Employees.Single(e => e.Id == workerId);
+            database.Entry(employee).State = EntityState.Modified;
+            if (employee.Email != employeeData.PrivateEmail)
+                employee.Email = employeeData.PrivateEmail;
+            if (employee.PhoneNumber != employeeData.PrivatePhoneNumber)
+                employee.PhoneNumber = employeeData.PrivatePhoneNumber;
+            if (employee.JobPhone != employeeData.PhoneNumber)
+                employee.JobPhone = employeeData.PhoneNumber;
+            await database.SaveChangesAsync();
+
+            return StatusCode(HttpStatusCode.OK);
+        }
+
         [Route("Address")]
         [HttpPut]
         public async Task<IHttpActionResult> PutAddress(AddressEmployee address)
@@ -297,25 +339,6 @@ namespace HRinfoAPI.Controllers
 
             database.EmployeesAddresses.Remove(employeesAddress);
             database.Addresses.Remove(address);
-            await database.SaveChangesAsync();
-            
-            return StatusCode(HttpStatusCode.OK);
-        }
-
-        [Route("DataEdit")]
-        [HttpPut]
-        public async Task<IHttpActionResult> PutPersonalData(EmployeeData employeeData)
-        {
-            this.GetEmployeeId();
-
-            Employee employee = database.Employees.Single(e => e.Id == workerId);
-            database.Entry(employee).State = EntityState.Modified;
-            if (employee.Email != employeeData.PrivateEmail)
-                employee.Email = employeeData.PrivateEmail;
-            if (employee.PhoneNumber != employeeData.PrivatePhoneNumber)
-                employee.PhoneNumber = employeeData.PrivatePhoneNumber;
-            if (employee.JobPhone != employeeData.PhoneNumber)
-                employee.JobPhone = employeeData.PhoneNumber;
             await database.SaveChangesAsync();
             
             return StatusCode(HttpStatusCode.OK);
