@@ -9,8 +9,9 @@ namespace HRinfoAPI.Models
     {
     }
 
-    public class EmployeeAddress
+    public class AddressEmployee
     {
+        public int Id { get; set; }
         public string Street { get; set; }
         public string HouseNumber { get; set; }
         public string FlatNumber { get; set; }
@@ -18,6 +19,12 @@ namespace HRinfoAPI.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string AddressType { get; set; }
+    }
+
+    public class EmployeeAddressType
+    {
+        public int AddressId { get; set; }
+        public int AddressTypeId { get; set; }
     }
 
     public class EmployeeContactData
@@ -37,6 +44,13 @@ namespace HRinfoAPI.Models
         public string PrivateEmail { get; set; }
         public short HolidayDaysTotal { get; set; }
         public short UsedHolidayDays { get; set; }
+    }
+
+    public class EmployeePutData
+    {
+        public string PhoneNumber { get; set; }
+        public string PrivatePhoneNumber { get; set; }
+        public string PrivateEmail { get; set; }
     }
 
     public class EmployeeSalaries

@@ -78,7 +78,5 @@ namespace HRinfoAPI.Controllers
 
             return result.ToList();
         }
-
-
     }
 }
