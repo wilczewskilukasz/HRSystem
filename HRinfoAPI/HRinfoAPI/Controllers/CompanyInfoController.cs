@@ -1,16 +1,26 @@
 ﻿using System;
+using System.Data;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Threading.Tasks;
+using System.Web.Http.Description;
 using HRinfoAPI.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/Company")]
     public class CompanyInfoController : ApiController
     {
         HRinfoEntities database = new HRinfoEntities();
+        int? workerId;
+
+        private void GetEmployeeId()
+        {
+            workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).SingleOrDefault();
+        }
 
         [Route("News")]
         public IEnumerable<NewsResults> News()
@@ -75,6 +85,26 @@ namespace HRinfoAPI.Controllers
                 .Take(takeNumber);
 
             return result.ToList();
+        }
+
+        [Authorize]
+        [Route("RaiseError")]
+        // POST: api/PrivateMessages
+        [ResponseType(typeof(PrivateMessage))]
+        public async Task<IHttpActionResult> PostPrivateMessage(PrivateMessage privateMessage)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            this.GetEmployeeId();
+            privateMessage.EmployeeId = (int)workerId;
+            privateMessage.TopicId = database.Topics.Single(t => t.Name == "Problemy z aplikacją").Id;
+            database.PrivateMessages.Add(privateMessage);
+            await database.SaveChangesAsync();
+
+            return CreatedAtRoute("DefaultApi", new { id = privateMessage.Id }, privateMessage);
         }
     }
 }

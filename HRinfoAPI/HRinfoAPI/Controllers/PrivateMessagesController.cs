@@ -100,6 +100,8 @@ namespace HRinfoAPI.Controllers
                 return BadRequest(ModelState);
             }
 
+            this.GetEmployeeId();
+            privateMessage.EmployeeId = (int)workerId;
             db.PrivateMessages.Add(privateMessage);
             await db.SaveChangesAsync();
 
