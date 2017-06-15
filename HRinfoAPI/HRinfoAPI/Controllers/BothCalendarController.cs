@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
@@ -6,12 +7,21 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Description;
 using HRinfoAPI.Models;
+using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
-    public class CalendarsController : ApiController
+    //[Authorize]
+    public class BothCalendarController : ApiController
     {
         private HRinfoEntities db = new HRinfoEntities();
+        int? employeeId;
+
+        private void GetEmployeeId()
+        {
+            employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).SingleOrDefault();
+        }
+
 
         // GET: api/Calendars
         public IQueryable<Calendar> GetCalendars()

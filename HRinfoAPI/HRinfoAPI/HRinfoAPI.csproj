@@ -230,6 +230,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AddressTypesController.cs" />
     <Compile Include="Controllers\AspNetRolesController.cs" />
+    <Compile Include="Controllers\BothCalendarController.cs" />
     <Compile Include="Controllers\CalendarsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
