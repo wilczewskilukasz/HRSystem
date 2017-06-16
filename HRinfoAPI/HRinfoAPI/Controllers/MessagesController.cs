@@ -11,9 +11,9 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
+    //[Authorize]
     [RoutePrefix("Messages")]
-    public class PrivateMessagesController : ApiController
+    public class MessagesController : ApiController
     {
         private HRinfoEntities db = new HRinfoEntities();
         int? workerId;
@@ -29,16 +29,16 @@ namespace HRinfoAPI.Controllers
             this.GetEmployeeId();
 
             var result = (from p in db.PrivateMessages
-                         where p.EmployeeId == workerId
-                         select p)
-                         .Union(from r in db.PrivateMessages
-                          join p in db.PrivateMessages on r.RequestId equals p.Id
                           where p.EmployeeId == workerId
-                          select r)
+                          select p)
                          .Union(from r in db.PrivateMessages
-                          join p in db.PrivateMessages on r.ResponseId equals p.Id
-                          where p.EmployeeId == workerId
-                          select r);
+                                join p in db.PrivateMessages on r.RequestId equals p.Id
+                                where p.EmployeeId == workerId
+                                select r)
+                         .Union(from r in db.PrivateMessages
+                                join p in db.PrivateMessages on r.ResponseId equals p.Id
+                                where p.EmployeeId == workerId
+                                select r);
 
             return result.OrderByDescending(r => r.Id);
         }

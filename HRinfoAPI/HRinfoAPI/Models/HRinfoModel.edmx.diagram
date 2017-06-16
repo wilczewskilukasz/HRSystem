@@ -5,72 +5,72 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="972496c914644c988edd2b15f866611f" Name="Diagram1">
-        <EntityTypeShape EntityType="HRinfoModel.Address" Width="1.5" PointX="16" PointY="6.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.AddressType" Width="1.5" PointX="16" PointY="33.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.AspNetRole" Width="1.5" PointX="13" PointY="26.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.AspNetUserClaim" Width="1.5" PointX="17.5" PointY="25.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.AspNetUserLogin" Width="1.5" PointX="17.5" PointY="28.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.AspNetUser" Width="1.5" PointX="15.25" PointY="22.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Calendar" Width="1.5" PointX="5.25" PointY="13.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.City" Width="1.5" PointX="13.75" PointY="4.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Country" Width="1.5" PointX="13.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Day" Width="1.5" PointX="6" PointY="21.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Department" Width="1.5" PointX="7.5" PointY="12.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.EmployeePositionsHistory" Width="1.5" PointX="16.25" PointY="18.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Employee" Width="1.5" PointX="13" PointY="20.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.EmployeesAddress" Width="1.5" PointX="18.25" PointY="22" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Event" Width="1.5" PointX="3" PointY="13.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.News" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.PayOff" Width="1.5" PointX="15.25" PointY="30.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Position" Width="1.5" PointX="10.75" PointY="14.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.PrivateMessage" Width="1.5" PointX="19.25" PointY="16.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.SolutionBase" Width="1.5" PointX="0.75" PointY="15.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Status" Width="1.5" PointX="3" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Street" Width="1.5" PointX="13.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.sysdiagram" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.Topic" Width="1.5" PointX="13" PointY="12.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.WorkSchedule" Width="1.5" PointX="8.25" PointY="16.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.WorkScheduleException" Width="1.5" PointX="13.5" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HRinfoModel.WorkTime" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
-        <AssociationConnector Association="HRinfoModel.FK_Addresses_Cities" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Addresses_Countries" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Addresses_Streets" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_EmployeesAddresses_Addresses" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_EmployeesAddresses_AddressType" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_AspNetUsers_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Calendars_Calendars_Company" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Calendars_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Calendars_Events" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Calendars_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_WorkTime_Calendars" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_WorkSchedule_Days" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Departments_Departments" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Positions_Departments" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Topics_Departments" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_EmployeePositionsHistory_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_EmployeePositionsHistory_Positions" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Employees_Positions" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_EmployeesAddresses_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PayOffs_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Employees_Request" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Employees_Response" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_WorkTime_Employees" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Events_SolutionBase" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Positions_Positions" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Topics_Positions" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_PrivateMessages_Request" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_PrivateMessages_Response" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Topics" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_Status_SolutionBase" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_WorkSchedule_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_WorkScheduleExceptions_Status" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.FK_WorkScheduleExceptions_WorkSchedule" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.AspNetUserRoles" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.CalendarDepartmentsRestriction" ManuallyRouted="false" />
-        <AssociationConnector Association="HRinfoModel.CalendarPositionsRestriction" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HRinfoModel.C__MigrationHistory" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRinfoModel.Address" Width="1.5" PointX="14.25" PointY="32.625" />
+        <EntityTypeShape EntityType="HRinfoModel.AddressType" Width="1.5" PointX="14.25" PointY="37.125" />
+        <EntityTypeShape EntityType="HRinfoModel.AspNetRole" Width="1.5" PointX="17.25" PointY="34.625" />
+        <EntityTypeShape EntityType="HRinfoModel.AspNetUserClaim" Width="1.5" PointX="21.75" PointY="30.625" />
+        <EntityTypeShape EntityType="HRinfoModel.AspNetUserLogin" Width="1.5" PointX="21.75" PointY="28.125" />
+        <EntityTypeShape EntityType="HRinfoModel.AspNetUser" Width="1.5" PointX="19.5" PointY="28.25" />
+        <EntityTypeShape EntityType="HRinfoModel.Calendar" Width="1.5" PointX="7.5" PointY="17.125" />
+        <EntityTypeShape EntityType="HRinfoModel.City" Width="1.5" PointX="12" PointY="35.75" />
+        <EntityTypeShape EntityType="HRinfoModel.Country" Width="1.5" PointX="12" PointY="31.125" />
+        <EntityTypeShape EntityType="HRinfoModel.Day" Width="1.5" PointX="5.25" PointY="25.375" />
+        <EntityTypeShape EntityType="HRinfoModel.Department" Width="1.5" PointX="9.75" PointY="22.125" />
+        <EntityTypeShape EntityType="HRinfoModel.EmployeePositionsHistory" Width="1.5" PointX="16.5" PointY="23.25" />
+        <EntityTypeShape EntityType="HRinfoModel.Employee" Width="1.5" PointX="14.25" PointY="25" />
+        <EntityTypeShape EntityType="HRinfoModel.EmployeesAddress" Width="1.5" PointX="16.5" PointY="27.375" />
+        <EntityTypeShape EntityType="HRinfoModel.Event" Width="1.5" PointX="3" PointY="15.5" />
+        <EntityTypeShape EntityType="HRinfoModel.News" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HRinfoModel.PayOff" Width="1.5" PointX="16.5" PointY="31.5" />
+        <EntityTypeShape EntityType="HRinfoModel.Position" Width="1.5" PointX="12" PointY="19.375" />
+        <EntityTypeShape EntityType="HRinfoModel.PrivateMessage" Width="1.5" PointX="19.5" PointY="23.25" />
+        <EntityTypeShape EntityType="HRinfoModel.SolutionBase" Width="1.5" PointX="0.75" PointY="15.75" />
+        <EntityTypeShape EntityType="HRinfoModel.Status" Width="1.5" PointX="5.25" PointY="21.75" />
+        <EntityTypeShape EntityType="HRinfoModel.Street" Width="1.5" PointX="12" PointY="33.375" />
+        <EntityTypeShape EntityType="HRinfoModel.Topic" Width="1.5" PointX="14.25" PointY="20.875" />
+        <EntityTypeShape EntityType="HRinfoModel.WorkSchedule" Width="1.5" PointX="7.5" PointY="23.75" />
+        <EntityTypeShape EntityType="HRinfoModel.WorkScheduleException" Width="1.5" PointX="9.75" PointY="25.875" />
+        <EntityTypeShape EntityType="HRinfoModel.WorkTime" Width="1.5" PointX="9.75" PointY="18.625" />
+        <AssociationConnector Association="HRinfoModel.FK_Addresses_Cities" />
+        <AssociationConnector Association="HRinfoModel.FK_Addresses_Countries" />
+        <AssociationConnector Association="HRinfoModel.FK_Addresses_Streets" />
+        <AssociationConnector Association="HRinfoModel.FK_EmployeesAddresses_Addresses" />
+        <AssociationConnector Association="HRinfoModel.FK_EmployeesAddresses_AddressType" />
+        <AssociationConnector Association="HRinfoModel.FK_dbo_AspNetUserClaims_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="HRinfoModel.FK_dbo_AspNetUserLogins_dbo_AspNetUsers_UserId" />
+        <AssociationConnector Association="HRinfoModel.FK_AspNetUsers_Employees" />
+        <AssociationConnector Association="HRinfoModel.FK_Calendars_Calendars_Company" />
+        <AssociationConnector Association="HRinfoModel.FK_Calendars_Employees" />
+        <AssociationConnector Association="HRinfoModel.FK_Calendars_Events" />
+        <AssociationConnector Association="HRinfoModel.FK_Calendars_Status" />
+        <AssociationConnector Association="HRinfoModel.FK_WorkTime_Calendars" />
+        <AssociationConnector Association="HRinfoModel.FK_WorkSchedule_Days" />
+        <AssociationConnector Association="HRinfoModel.FK_Departments_Departments" />
+        <AssociationConnector Association="HRinfoModel.FK_Positions_Departments" />
+        <AssociationConnector Association="HRinfoModel.FK_Topics_Departments" />
+        <AssociationConnector Association="HRinfoModel.FK_EmployeePositionsHistory_Employees" />
+        <AssociationConnector Association="HRinfoModel.FK_EmployeePositionsHistory_Positions" />
+        <AssociationConnector Association="HRinfoModel.FK_Employees_Positions" />
+        <AssociationConnector Association="HRinfoModel.FK_EmployeesAddresses_Employees" />
+        <AssociationConnector Association="HRinfoModel.FK_PayOffs_Employees" />
+        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Employees_Request" />
+        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Employees_Response" />
+        <AssociationConnector Association="HRinfoModel.FK_WorkTime_Employees" />
+        <AssociationConnector Association="HRinfoModel.FK_Events_SolutionBase" />
+        <AssociationConnector Association="HRinfoModel.FK_Status_Events" />
+        <AssociationConnector Association="HRinfoModel.FK_Positions_Positions" />
+        <AssociationConnector Association="HRinfoModel.FK_Topics_Positions" />
+        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_PrivateMessages_Request" />
+        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_PrivateMessages_Response" />
+        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Status" />
+        <AssociationConnector Association="HRinfoModel.FK_PrivateMessages_Topics" />
+        <AssociationConnector Association="HRinfoModel.FK_WorkSchedule_Status" />
+        <AssociationConnector Association="HRinfoModel.FK_WorkScheduleExceptions_Status" />
+        <AssociationConnector Association="HRinfoModel.FK_WorkScheduleExceptions_WorkSchedule" />
+        <AssociationConnector Association="HRinfoModel.AspNetUserRoles" />
+        <AssociationConnector Association="HRinfoModel.CalendarDepartmentsRestriction" />
+        <AssociationConnector Association="HRinfoModel.CalendarPositionsRestriction" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -25,6 +25,7 @@ namespace HRinfoAPI.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<C__MigrationHistory> C__MigrationHistory { get; set; }
         public virtual DbSet<Address> Addresses { get; set; }
         public virtual DbSet<AddressType> AddressTypes { get; set; }
         public virtual DbSet<AspNetRole> AspNetRoles { get; set; }
@@ -47,7 +48,6 @@ namespace HRinfoAPI.Models
         public virtual DbSet<SolutionBase> SolutionBases { get; set; }
         public virtual DbSet<Status> Status { get; set; }
         public virtual DbSet<Street> Streets { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
         public virtual DbSet<Topic> Topics { get; set; }
         public virtual DbSet<WorkSchedule> WorkSchedules { get; set; }
         public virtual DbSet<WorkScheduleException> WorkScheduleExceptions { get; set; }

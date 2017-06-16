@@ -3,7 +3,6 @@ using System.Web.Http;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
     public class ValuesController : ApiController
     {
         // GET api/values

@@ -18,6 +18,7 @@ namespace HRinfoAPI.Models
         public Event()
         {
             this.Calendars = new HashSet<Calendar>();
+            this.Status = new HashSet<Status>();
         }
     
         public int Id { get; set; }
@@ -27,5 +28,7 @@ namespace HRinfoAPI.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Calendar> Calendars { get; set; }
         public virtual SolutionBase SolutionBase { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Status> Status { get; set; }
     }
 }

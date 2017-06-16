@@ -101,6 +101,7 @@ namespace HRinfoAPI.Controllers
             this.GetEmployeeId();
             privateMessage.EmployeeId = (int)workerId;
             privateMessage.TopicId = database.Topics.Single(t => t.Name == "Problemy z aplikacją").Id;
+            privateMessage.StatusId = database.Status.Single(s => s.Name == "Wysłane" && s.EventId == database.Events.Single(e => e.Name == "Wiadomości").Id).Id;
             database.PrivateMessages.Add(privateMessage);
             await database.SaveChangesAsync();
 

@@ -12,7 +12,7 @@ using Microsoft.AspNet.Identity;
 namespace HRinfoAPI.Controllers
 {
     //[Authorize]
-    public class BothCalendarController : ApiController
+    public class LW_EmployeeCalendarController : ApiController
     {
         private HRinfoEntities db = new HRinfoEntities();
         int? employeeId;
@@ -21,6 +21,8 @@ namespace HRinfoAPI.Controllers
         {
             employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).SingleOrDefault();
         }
+
+        //public iq
 
 
         // GET: api/Calendars

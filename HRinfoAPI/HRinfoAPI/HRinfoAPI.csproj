@@ -228,22 +228,13 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\AddressTypesController.cs" />
-    <Compile Include="Controllers\AspNetRolesController.cs" />
-    <Compile Include="Controllers\BothCalendarController.cs" />
-    <Compile Include="Controllers\CalendarsController.cs" />
-    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\DictionaryController.cs" />
+    <Compile Include="Controllers\LW_EmployeeCalendarController.cs" />
     <Compile Include="Controllers\EmployeeController.cs" />
-    <Compile Include="Controllers\EventsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HumanResourcesController.cs" />
     <Compile Include="Controllers\CompanyInfoController.cs" />
-    <Compile Include="Controllers\PayOffsController.cs" />
-    <Compile Include="Controllers\PositionsController.cs" />
-    <Compile Include="Controllers\PrivateMessagesController.cs" />
-    <Compile Include="Controllers\SolutionBasesController.cs" />
-    <Compile Include="Controllers\StatusController.cs" />
-    <Compile Include="Controllers\TopicsController.cs" />
+    <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -275,6 +266,9 @@
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Country.cs">
+      <DependentUpon>HRinfoModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\C__MigrationHistory.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Day.cs">
@@ -331,9 +325,6 @@
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Street.cs">
-      <DependentUpon>HRinfoModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagram.cs">
       <DependentUpon>HRinfoModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Topic.cs">

@@ -18,7 +18,6 @@ namespace HRinfoAPI.Models
         public SolutionBase()
         {
             this.Events = new HashSet<Event>();
-            this.Status = new HashSet<Status>();
         }
     
         public int Id { get; set; }
@@ -26,7 +25,5 @@ namespace HRinfoAPI.Models
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Event> Events { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Status> Status { get; set; }
     }
 }

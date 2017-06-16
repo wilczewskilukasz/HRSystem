@@ -217,6 +217,7 @@ namespace HRinfoAPI.Controllers
             var result = from e in database.Employees
                          join p in database.PayOffs on e.Id equals p.EmployeeId
                          where e.Id == workerId
+                         orderby p.Date descending
                          select new EmployeeSalaries { Amount = p.Amount, Date = p.Date };
 
             return result.ToList();

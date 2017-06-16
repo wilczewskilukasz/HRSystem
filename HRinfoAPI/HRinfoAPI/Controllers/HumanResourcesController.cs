@@ -5,13 +5,12 @@ using HRinfoAPI.Models;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
-    [RoutePrefix("api")]
+    [RoutePrefix("api/HumanResources")]
     public class HumanResourcesController : ApiController
     {
         HRinfoEntities database = new HRinfoEntities();
         
-        [Route("HumanResources")]
+        [Route("Team")]
         public IEnumerable<EmployeeContactData> Get()
         {
             var result = from e in database.Employees

@@ -26,7 +26,7 @@ namespace HRinfoAPI.Models
         public string FlatNumber { get; set; }
         public string PostalCode { get; set; }
         public int CityId { get; set; }
-        public int CountryId { get; set; }
+        public Nullable<int> CountryId { get; set; }
     
         public virtual City City { get; set; }
         public virtual Country Country { get; set; }

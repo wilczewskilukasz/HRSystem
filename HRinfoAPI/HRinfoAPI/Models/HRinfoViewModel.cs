@@ -70,4 +70,67 @@ namespace HRinfoAPI.Models
         public DateTime? ResultDateFrom { get; set; }
         public DateTime? ResultDateTo { get; set; }
     }
+
+    public class DictionaryBasic
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+
+    public class DictionaryStatus : DictionaryBasic
+    {
+        public byte OrderPosition { get; set; }
+        public int EventId { get; set; }
+    }
+
+    public class DictionaryEvent : DictionaryBasic
+    {
+        public int SolutionBaseId { get; set; }
+    }
+
+    public class DictionaryPosition : DictionaryBasic
+    {
+        public string PositionCode { get; set; }
+        public int DepartmentId { get; set; }
+        public int? UpPositionId { get; set; }
+    }
+
+    public class DictionaryDepartment : DictionaryBasic
+    {
+        public string DepartmentCode { get; set; }
+        public int? UpDepartmentId { get; set; }
+    }
+
+    public class DictionaryTopics : DictionaryBasic
+    {
+        public int? DepartmentId { get; set; }
+        public int? PositionId { get; set; }
+    }
+
+    public class Salaries
+    {
+        public int Id { get; set; }
+        public int EmployeeId { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Amount { get; set; }
+    }
+
+    public class FullSalaries : Salaries
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+    }
+
+    public class Messages
+    {
+        public int Id { get; set; }
+        public int EmployeeId { get; set; }
+        public int TopicId { get; set; }
+        public string Message { get; set; }
+        public DateTime Date { get; set; }
+        public int StatusId { get; set; }
+        public int? ResponseEmployeeId { get; set; }
+        public int? RequestId { get; set; }
+        public int? ResponseId { get; set; }
+    }
 }
