@@ -125,11 +125,13 @@ namespace HRinfoAPI.Models
     {
         public int Id { get; set; }
         public int EmployeeId { get; set; }
+        public string Employee { get; set; }
         public int TopicId { get; set; }
+        public string Topic { get; set; }
         public string Message { get; set; }
         public DateTime Date { get; set; }
-        public int StatusId { get; set; }
         public int? ResponseEmployeeId { get; set; }
+        public string ResponseEmployee { get; set; }
         public int? RequestId { get; set; }
         public int? ResponseId { get; set; }
     }

@@ -19,7 +19,7 @@ namespace HRinfoAPI.Controllers
 
         private void GetEmployeeId()
         {
-            employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).SingleOrDefault();
+            employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
         }
 
         //public iq

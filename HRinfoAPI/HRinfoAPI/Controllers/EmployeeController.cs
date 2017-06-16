@@ -20,7 +20,7 @@ namespace HRinfoAPI.Controllers
 
         private void GetEmployeeId()
         {
-            workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).SingleOrDefault();
+            workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
         }
 
         private IEnumerable<AddressEmployee> GetEmployeeAddress(
