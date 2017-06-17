@@ -33,6 +33,13 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("Status")]
+        [HttpGet]
+        public IQueryable<DictionaryStatus> GetStatus(string name)
+        {
+            return db.Status.Where(s => s.Name == name).Select(s => new DictionaryStatus() { Name = s.Name, Id = s.Id, OrderPosition = s.OrderPosition, EventId = s.EventId });
+        }
+
+        [Route("Status")]
         [HttpPost]
         public async Task<IHttpActionResult> PostStatus(DictionaryStatus ds)
         {
@@ -102,6 +109,13 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("SolutionBase")]
+        [HttpGet]
+        public IQueryable<DictionaryBasic> GetSolutionBase(string name)
+        {
+            return db.SolutionBases.Where(s => s.Name == nameid).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
+        }
+
+        [Route("SolutionBase")]
         [HttpPost]
         public async Task<IHttpActionResult> PostSolutionBase(DictionaryBasic ds)
         {
@@ -162,6 +176,13 @@ namespace HRinfoAPI.Controllers
         public IQueryable<DictionaryEvent> GetEvent(int id)
         {
             return db.Events.Where(s => s.Id == id).Select(s => new DictionaryEvent() { Name = s.Name, Id = s.Id, SolutionBaseId = s.SolutionBaseId });
+        }
+
+        [Route("Event")]
+        [HttpGet]
+        public IQueryable<DictionaryEvent> GetEvent(string name)
+        {
+            return db.Events.Where(s => s.Name == name).Select(s => new DictionaryEvent() { Name = s.Name, Id = s.Id, SolutionBaseId = s.SolutionBaseId });
         }
 
         [Route("Event")]
@@ -228,6 +249,13 @@ namespace HRinfoAPI.Controllers
         public IQueryable<DictionaryPosition> GetPosition(int id)
         {
             return db.Positions.Where(s => s.Id == id).Select(s => new DictionaryPosition() { Id = s.Id, Name = s.Name, PositionCode = s.PositionCode, DepartmentId = s.DepartmentId, UpPositionId = s.UpPositionId });
+        }
+
+        [Route("Position")]
+        [HttpGet]
+        public IQueryable<DictionaryPosition> GetPosition(string name)
+        {
+            return db.Positions.Where(s => s.Name == name).Select(s => new DictionaryPosition() { Id = s.Id, Name = s.Name, PositionCode = s.PositionCode, DepartmentId = s.DepartmentId, UpPositionId = s.UpPositionId });
         }
 
         [Route("Position")]
@@ -303,6 +331,13 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("Department")]
+        [HttpGet]
+        public IQueryable<DictionaryDepartment> GetDepartment(string name)
+        {
+            return db.Departments.Where(s => s.Name == name).Select(s => new DictionaryDepartment() { Name = s.Name, Id = s.Id, DepartmentCode = s.DepartmentCode, UpDepartmentId = s.UpDepartmentId });
+        }
+
+        [Route("Department")]
         [HttpPost]
         public async Task<IHttpActionResult> PostDepartment(DictionaryDepartment ds)
         {
@@ -372,6 +407,13 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("AddressType")]
+        [HttpGet]
+        public IQueryable<DictionaryBasic> GetAddressType(string name)
+        {
+            return db.AddressTypes.Where(s => s.Name == name).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
+        }
+
+        [Route("AddressType")]
         [HttpPost]
         public async Task<IHttpActionResult> PostAddressType(DictionaryBasic ds)
         {
@@ -399,6 +441,13 @@ namespace HRinfoAPI.Controllers
         public IQueryable<DictionaryBasic> GetStreet(int id)
         {
             return db.Streets.Where(s => s.Id == id).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
+        }
+
+        [Route("Street")]
+        [HttpGet]
+        public IQueryable<DictionaryBasic> GetStreet(string name)
+        {
+            return db.Streets.Where(s => s.Name == name).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
         }
 
         [Route("Street")]
@@ -432,6 +481,13 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("City")]
+        [HttpGet]
+        public IQueryable<DictionaryBasic> GetCity(string name)
+        {
+            return db.Cities.Where(s => s.Name == name).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
+        }
+
+        [Route("City")]
         [HttpPost]
         public async Task<IHttpActionResult> PostCity(DictionaryBasic ds)
         {
@@ -462,6 +518,13 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("Country")]
+        [HttpGet]
+        public IQueryable<DictionaryBasic> GetCountry(string name)
+        {
+            return db.Countries.Where(s => s.Name == name).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
+        }
+
+        [Route("Country")]
         [HttpPost]
         public async Task<IHttpActionResult> PostCountry(DictionaryBasic ds)
         {
@@ -489,6 +552,13 @@ namespace HRinfoAPI.Controllers
         public IQueryable<DictionaryTopics> GetTopic(int id)
         {
             return db.Topics.Where(s => s.Id == id).Select(s => new DictionaryTopics() { Name = s.Name, Id = s.Id });
+        }
+
+        [Route("Topic")]
+        [HttpGet]
+        public IQueryable<DictionaryTopics> GetTopic(string name)
+        {
+            return db.Topics.Where(s => s.Name == name).Select(s => new DictionaryTopics() { Name = s.Name, Id = s.Id });
         }
 
         [Route("Topic")]

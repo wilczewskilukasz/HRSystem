@@ -6,6 +6,27 @@ namespace HRinfoAPI.Models
     {
     }
 
+    public class CompanyCalendar
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public DateTime DateFrom { get; set; }
+        public TimeSpan? TimeFrom { get; set; }
+        public DateTime DateTo { get; set; }
+        public TimeSpan? TimeTo { get; set; }
+        public byte? WorkDaysNumber { get; set; }
+        public int StatusId { get; set; }
+        public string StatusName { get; set; }
+        public int EventId { get; set; }
+        public string EventName { get; set; }
+        public bool PositionRestriction { get; set; }
+        public bool DepartmentRestriction { get; set; }
+        public bool IsActive { get; set; }
+        public short? ParticipantTotalNumber { get; set; }
+        public short? ParticipantAvailableNumber { get; set; }
+    }
+
     public class AddressEmployee
     {
         public int Id { get; set; }
