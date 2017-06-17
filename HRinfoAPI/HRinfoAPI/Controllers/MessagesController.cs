@@ -12,6 +12,7 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
+    // TODO: uncoment
     //[Authorize]
     [RoutePrefix("Message")]
     public class MessagesController : ApiController
@@ -80,7 +81,13 @@ namespace HRinfoAPI.Controllers
         public async Task<IHttpActionResult> PostMessage(Messages message)
         {
             PrivateMessage privateMessage = new PrivateMessage();
-            privateMessage.EmployeeId = message.EmployeeId;
+            if (message.EmployeeId > 0)
+                privateMessage.EmployeeId = message.EmployeeId;
+            else
+            {
+                this.GetEmployeeId();
+                privateMessage.EmployeeId = (int)workerId;
+            }
             privateMessage.TopicId = message.TopicId;
             privateMessage.Message = message.Message;
             privateMessage.StatusId = db.Status.Single(s => s.EventId == db.Events.Single(e => e.Name == "Wiadomości").Id).Id;
@@ -99,31 +106,6 @@ namespace HRinfoAPI.Controllers
 
             return StatusCode(HttpStatusCode.OK);
         }
-
-
-
-
-
-
-
-
-        // POST: api/PrivateMessages
-        [ResponseType(typeof(PrivateMessage))]
-        public async Task<IHttpActionResult> PostPrivateMessage(PrivateMessage privateMessage)
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-
-            this.GetEmployeeId();
-            privateMessage.EmployeeId = (int)workerId;
-            db.PrivateMessages.Add(privateMessage);
-            await db.SaveChangesAsync();
-
-            return CreatedAtRoute("DefaultApi", new { id = privateMessage.Id }, privateMessage);
-        }
-        
 
         protected override void Dispose(bool disposing)
         {

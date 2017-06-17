@@ -11,7 +11,8 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
+    // TODO: uncoment
+    //[Authorize]
     [RoutePrefix("api/Employee")]
     public class EmployeeController : ApiController
     {

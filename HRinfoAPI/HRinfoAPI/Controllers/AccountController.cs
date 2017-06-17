@@ -20,7 +20,8 @@ using System.Text;
 
 namespace HRinfoAPI.Controllers
 {
-    [Authorize]
+    // TODO: uncoment
+    //[Authorize]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {

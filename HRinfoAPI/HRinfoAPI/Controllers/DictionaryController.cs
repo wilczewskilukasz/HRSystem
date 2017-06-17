@@ -11,6 +11,7 @@ using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
+    // TODO: uncoment
     //[Authorize]
     [RoutePrefix("api/Dictionary")]
     public class DictionaryController : ApiController
