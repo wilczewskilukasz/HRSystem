@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
 using System.Linq;
@@ -7,7 +6,6 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web.Http;
 using HRinfoAPI.Models;
-using Microsoft.AspNet.Identity;
 
 namespace HRinfoAPI.Controllers
 {
@@ -112,7 +110,7 @@ namespace HRinfoAPI.Controllers
         [HttpGet]
         public IQueryable<DictionaryBasic> GetSolutionBase(string name)
         {
-            return db.SolutionBases.Where(s => s.Name == nameid).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
+            return db.SolutionBases.Where(s => s.Name == name).Select(s => new DictionaryBasic() { Name = s.Name, Id = s.Id });
         }
 
         [Route("SolutionBase")]

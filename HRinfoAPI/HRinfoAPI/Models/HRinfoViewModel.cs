@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace HRinfoAPI.Models
 {
@@ -6,14 +7,14 @@ namespace HRinfoAPI.Models
     {
     }
 
-    public class CompanyCalendar
+    public class BaseCalendar
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public DateTime DateFrom { get; set; }
+        public DateTime? DateFrom { get; set; }
         public TimeSpan? TimeFrom { get; set; }
-        public DateTime DateTo { get; set; }
+        public DateTime? DateTo { get; set; }
         public TimeSpan? TimeTo { get; set; }
         public byte? WorkDaysNumber { get; set; }
         public int StatusId { get; set; }
@@ -23,8 +24,17 @@ namespace HRinfoAPI.Models
         public bool PositionRestriction { get; set; }
         public bool DepartmentRestriction { get; set; }
         public bool IsActive { get; set; }
+    }
+
+    public class CompanyCalendar : BaseCalendar
+    {
         public short? ParticipantTotalNumber { get; set; }
         public short? ParticipantAvailableNumber { get; set; }
+    }
+
+    public class CompanyCalendarRestriction
+    {
+        public ICollection<dynamic> Restrictions { get; set; }
     }
 
     public class AddressEmployee
