@@ -8,6 +8,7 @@ using System.Net;
 using System.Web.Http;
 using HRinfoAPI.Models;
 using Microsoft.AspNet.Identity;
+using System.Web;
 
 namespace HRinfoAPI.Controllers
 {
@@ -21,7 +22,17 @@ namespace HRinfoAPI.Controllers
 
         private void GetEmployeeId()
         {
-            workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
+            // TODO: ogarnąć
+            var userid = HttpContext.Current.User.Identity.GetUserId();
+            var username = HttpContext.Current.User.Identity.GetUserName();
+            var result = database.AspNetUsers.Where(a => a.Email == username).Single().EmployeeId;
+            var result2 = database.AspNetUsers.Where(a => a.Id == username).Single().EmployeeId;
+            //workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
+
+            if (result == null)
+                workerId = result2;
+            else
+                workerId = result;
         }
 
         private IEnumerable<AddressEmployee> GetEmployeeAddress(

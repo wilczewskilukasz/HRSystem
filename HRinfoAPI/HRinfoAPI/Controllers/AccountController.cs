@@ -73,7 +73,7 @@ namespace HRinfoAPI.Controllers
         public IHttpActionResult Logout()
         {
             Authentication.SignOut(CookieAuthenticationDefaults.AuthenticationType);
-            return Ok();
+            return Ok(new { message = "Logout successful." });
         }
 
         // GET api/Account/ManageInfo?returnUrl=%2F&generateState=true
@@ -321,11 +321,30 @@ namespace HRinfoAPI.Controllers
         }
 
         // POST api/User/Login
+        // TODO: uncoment
         [HttpPost]
         [AllowAnonymous]
         [Route("Login")]
+        //public async Task<IHttpActionResult> LoginUser(LoginUserBindingModel model)
         public async Task<HttpResponseMessage> LoginUser(LoginUserBindingModel model)
         {
+            //if (model == null)
+                //return BadRequest("Invalid user data.");
+
+            // Invoke the "token" OWIN service to perform the login (POST /api/token)
+            //var testServer = TestServer.Create<Startup>();
+            //var requestParams = new List<KeyValuePair<string, string>>
+            //    {
+            //        new KeyValuePair<string, string>("grant_type", "password"),
+            //        new KeyValuePair<string, string>("email", model.Email),
+            //        new KeyValuePair<string, string>("password", model.Password)
+            //    };
+            //var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
+            //var tokenServiceResponse = await testServer.HttpClient.PostAsync(
+            //    "/api/Token", requestParamsFormUrlEncoded);
+
+            //return this.ResponseMessage(tokenServiceResponse);
+
             // Invoke the "token" OWIN service to perform the login: /api/token
             // Ugly hack: I use a server-side HTTP POST because I cannot directly invoke the service (it is deeply hidden in the OAuthAuthorizationServerHandler class)
             var request = HttpContext.Current.Request;
@@ -346,6 +365,7 @@ namespace HRinfoAPI.Controllers
                 {
                     Content = new StringContent(responseString, Encoding.UTF8, "application/json")
                 };
+                //return ResponseMessage(tokenServiceResponse);
                 return responseMsg;
             }
         }
