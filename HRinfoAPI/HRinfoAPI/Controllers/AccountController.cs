@@ -329,22 +329,21 @@ namespace HRinfoAPI.Controllers
         public async Task<HttpResponseMessage> LoginUser(LoginUserBindingModel model)
         {
             //if (model == null)
-                //return BadRequest("Invalid user data.");
-
+            //    return BadRequest("Invalid user data.");
             // Invoke the "token" OWIN service to perform the login (POST /api/token)
             //var testServer = TestServer.Create<Startup>();
             //var requestParams = new List<KeyValuePair<string, string>>
             //    {
             //        new KeyValuePair<string, string>("grant_type", "password"),
-            //        new KeyValuePair<string, string>("email", model.Email),
+            //        new KeyValuePair<string, string>("username", model.Email),
             //        new KeyValuePair<string, string>("password", model.Password)
             //    };
             //var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
             //var tokenServiceResponse = await testServer.HttpClient.PostAsync(
             //    "/api/Token", requestParamsFormUrlEncoded);
-
             //return this.ResponseMessage(tokenServiceResponse);
 
+            
             // Invoke the "token" OWIN service to perform the login: /api/token
             // Ugly hack: I use a server-side HTTP POST because I cannot directly invoke the service (it is deeply hidden in the OAuthAuthorizationServerHandler class)
             var request = HttpContext.Current.Request;
@@ -352,11 +351,11 @@ namespace HRinfoAPI.Controllers
             using (var client = new HttpClient())
             {
                 var requestParams = new List<KeyValuePair<string, string>>
-            {
-                new KeyValuePair<string, string>("grant_type", "password"),
-                new KeyValuePair<string, string>("username", model.Email),
-                new KeyValuePair<string, string>("password", model.Password)
-            };
+                {
+                    new KeyValuePair<string, string>("grant_type", "password"),
+                    new KeyValuePair<string, string>("username", model.Email),
+                    new KeyValuePair<string, string>("password", model.Password)
+                };
                 var requestParamsFormUrlEncoded = new FormUrlEncodedContent(requestParams);
                 var tokenServiceResponse = await client.PostAsync(tokenServiceUrl, requestParamsFormUrlEncoded);
                 var responseString = await tokenServiceResponse.Content.ReadAsStringAsync();
@@ -365,7 +364,6 @@ namespace HRinfoAPI.Controllers
                 {
                     Content = new StringContent(responseString, Encoding.UTF8, "application/json")
                 };
-                //return ResponseMessage(tokenServiceResponse);
                 return responseMsg;
             }
         }

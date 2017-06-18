@@ -17,9 +17,11 @@ namespace HRinfoAPI.Controllers
         private HRinfoEntities db = new HRinfoEntities();
         int? employeeId;
 
+        // TODO: ogarnąć
         private void GetEmployeeId()
         {
-            employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
+            //employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
+            employeeId = 1;
         }
 
         //public iq
