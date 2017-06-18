@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { DanePage } from '../dane/dane';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
+import { App } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -25,6 +26,7 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController,
+    private app: App,
     private authCtrl: AuthService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
@@ -65,8 +67,7 @@ export class HomePage {
 
   public logout() {
     this.authCtrl.logout().subscribe(succ => {
-      this.navCtrl.setRoot(LoginPage);
-      window.location.reload();
+      this.app.getRootNav().setRoot(LoginPage);
     });
   }
 }
