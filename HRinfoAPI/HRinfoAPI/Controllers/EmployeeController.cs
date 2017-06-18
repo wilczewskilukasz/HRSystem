@@ -9,11 +9,20 @@ using System.Web.Http;
 using HRinfoAPI.Models;
 using Microsoft.AspNet.Identity;
 using System.Web;
+using System.Web.Http.Cors; // przestrzeń dla CORS (Cross Domain)
 
 namespace HRinfoAPI.Controllers
 {
+    // TODO: Rozwiązanie problemu z lokalnym przekazywaniem danych (cross-domain)
+    // W celu rozwiązania problemu Cross-Domain informacje znajują się pod hasłem:
+    // wab api2 cross domain
+    // i są dostępne pod adresme:
+    // https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
+
     // TODO: uncoment
     //[Authorize]
+    //[EnableCors(origins: "http://localhost", headers: "application/json", methods: "GET")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Employee")]
     public class EmployeeController : ApiController
     {
