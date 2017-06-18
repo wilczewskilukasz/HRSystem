@@ -19,7 +19,11 @@ export class DanePage {
     public loadingCtrl: LoadingController) {
   }
 
-  firstName: string = this.navParams.get('imie');
-  lastName: string = this.navParams.get('nazwisko');
+  firstName: string = this.navParams.get('pushedFirstName');
+  lastName: string = this.navParams.get('pushedLastName');
+  phone: string = this.navParams.get('pushedPhone');
+  email: string = this.navParams.get('pushedEmail');
+  position: string = this.navParams.get('pushedPosition');
+  department: string = this.navParams.get('pushedDepartment');
 }
 

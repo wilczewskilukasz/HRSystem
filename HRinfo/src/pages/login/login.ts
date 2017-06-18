@@ -21,7 +21,7 @@ export class LoginPage {
       if (allowed) {
         this.nav.setRoot(TabsPage);
       } else {
-        this.showError("Odmowa dostępu");
+        this.showError("Niepoprawne dane logowania");
       }
     },
       error => {
@@ -31,7 +31,7 @@ export class LoginPage {
 
   showLoading() {
     this.loading = this.loadingCtrl.create({
-      content: 'Proszę czekać...',
+      content: 'Ładowanie...',
       dismissOnPageChange: true
     });
     this.loading.present();

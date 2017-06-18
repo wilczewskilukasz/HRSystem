@@ -38,7 +38,7 @@ export class HomePage {
 
   daneClick() {
 
-    let modelStrona = this; // this(strona -> obiekt HomePage) przypisana do zmiennej w celu nieutracenia kontekstu.
+    let modelPage = this;
     let loading = this.loadingCtrl.create({
       content: "Trwa ładowanie..."
     });
@@ -48,13 +48,12 @@ export class HomePage {
       url: "http://hrinfoapi.azurewebsites.net/api/Employee/FindEmployee?employeeId=1",
       async: false,
       success: function (wynik) {
-        modelStrona.firstName = wynik.FirstName;
-        modelStrona.lastName = wynik.LastName;
-        modelStrona.phone = wynik.Phone;
-        modelStrona.email = wynik.Email;
-        modelStrona.position = wynik.Position;
-        modelStrona.department = wynik.Department;
-        loading.dismiss();
+        modelPage.firstName = wynik.FirstName;
+        modelPage.lastName = wynik.LastName;
+        modelPage.phone = wynik.Phone;
+        modelPage.email = wynik.Email;
+        modelPage.position = wynik.Position;
+        modelPage.department = wynik.Department;
       },
       error: function (error) {
         alert(JSON.stringify(error));
@@ -62,7 +61,15 @@ export class HomePage {
 
     });
 
-    this.navCtrl.push(DanePage, { imie: this.firstName, nazwisko: this.lastName });
+    this.navCtrl.push(DanePage, {
+      pushedFirstName: this.firstName,
+      pushedLastName: this.lastName,
+      pushedPhone: this.phone,
+      pushedEmail: this.email,
+      pushedPosition: this.position,
+      pushedDepartment: this.department
+    });
+    loading.dismiss();
   }
 
   public logout() {
