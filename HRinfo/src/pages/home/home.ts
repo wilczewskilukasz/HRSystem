@@ -5,6 +5,8 @@ import { ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { DanePage } from '../dane/dane';
+import { AuthService } from '../../providers/auth-service/auth-service';
+import { LoginPage } from '../login/login';
 
 @Component({
   selector: 'page-home',
@@ -13,6 +15,7 @@ import { DanePage } from '../dane/dane';
 
 export class HomePage {
 
+  id = '';
   firstName: string;
   lastName: string;
   phone: string;
@@ -22,10 +25,13 @@ export class HomePage {
 
 
   constructor(public navCtrl: NavController,
+    private authCtrl: AuthService,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
+    let info = this.authCtrl.getUserInfo();
+    this.id = info['id'];
   }
 
   daneClick() {
@@ -55,5 +61,12 @@ export class HomePage {
     });
 
     this.navCtrl.push(DanePage, { imie: this.firstName, nazwisko: this.lastName });
+  }
+
+  public logout() {
+    this.authCtrl.logout().subscribe(succ => {
+      this.navCtrl.setRoot(LoginPage);
+      window.location.reload();
+    });
   }
 }
