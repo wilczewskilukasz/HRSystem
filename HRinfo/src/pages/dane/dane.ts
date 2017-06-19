@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { App } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
@@ -17,13 +18,41 @@ export class DanePage {
     public toastCtrl: ToastController,
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
-  }
+      this.getData();
+    }
+    
+  firstName: string;
+  lastName: string;
+  phone: string;
+  email: string;
+  position: string;
+  department: string;
 
-  firstName: string = this.navParams.get('pushedFirstName');
-  lastName: string = this.navParams.get('pushedLastName');
-  phone: string = this.navParams.get('pushedPhone');
-  email: string = this.navParams.get('pushedEmail');
-  position: string = this.navParams.get('pushedPosition');
-  department: string = this.navParams.get('pushedDepartment');
+  getData() {
+      let loading = this.loadingCtrl.create({
+          content: "Trwa ładowanie danych..."
+      });
+      loading.present();
+
+      let modelPage = this;
+
+      $.ajax({
+          url: "http://hrinfoapi.azurewebsites.net/api/Employee/FindEmployee?employeeId=1",
+          async: false,
+          success: function (wynik) {
+              modelPage.firstName = wynik.FirstName;
+              modelPage.lastName = wynik.LastName;
+              modelPage.phone = wynik.PhoneNumber;
+              modelPage.email = wynik.Email;
+              modelPage.position = wynik.Position;
+              modelPage.department = wynik.Department;
+          },
+          error: function (error) {
+              alert(JSON.stringify(error));
+          }
+      });
+      
+      loading.dismiss();
+  }
 }
 

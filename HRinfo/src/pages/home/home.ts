@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
@@ -17,13 +17,6 @@ import { App } from 'ionic-angular';
 export class HomePage {
 
   id = '';
-  firstName: string;
-  lastName: string;
-  phone: string;
-  email: string;
-  position: string;
-  department: string;
-
 
   constructor(public navCtrl: NavController,
     private app: App,
@@ -37,39 +30,7 @@ export class HomePage {
   }
 
   daneClick() {
-
-    let modelPage = this;
-    let loading = this.loadingCtrl.create({
-      content: "Trwa ładowanie..."
-    });
-    loading.present();
-
-    $.ajax({
-      url: "http://hrinfoapi.azurewebsites.net/api/Employee/FindEmployee?employeeId=1",
-      async: false,
-      success: function (wynik) {
-        modelPage.firstName = wynik.FirstName;
-        modelPage.lastName = wynik.LastName;
-        modelPage.phone = wynik.Phone;
-        modelPage.email = wynik.Email;
-        modelPage.position = wynik.Position;
-        modelPage.department = wynik.Department;
-      },
-      error: function (error) {
-        alert(JSON.stringify(error));
-      }
-
-    });
-
-    this.navCtrl.push(DanePage, {
-      pushedFirstName: this.firstName,
-      pushedLastName: this.lastName,
-      pushedPhone: this.phone,
-      pushedEmail: this.email,
-      pushedPosition: this.position,
-      pushedDepartment: this.department
-    });
-    loading.dismiss();
+    this.navCtrl.push(DanePage);
   }
 
   public logout() {
