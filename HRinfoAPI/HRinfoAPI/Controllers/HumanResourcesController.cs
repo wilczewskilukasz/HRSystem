@@ -2,10 +2,12 @@
 using System.Linq;
 using System.Web.Http;
 using HRinfoAPI.Models;
+using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
     [RoutePrefix("api/HumanResources")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class HumanResourcesController : ApiController
     {
         HRinfoEntities database = new HRinfoEntities();

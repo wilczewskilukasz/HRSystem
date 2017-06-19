@@ -17,11 +17,13 @@ using HRinfoAPI.Models;
 using HRinfoAPI.Providers;
 using HRinfoAPI.Results;
 using System.Text;
+using System.Web.Http.Cors; // przestrzeń dla CORS (Cross Domain)
 
 namespace HRinfoAPI.Controllers
 {
     // TODO: uncoment
     //[Authorize]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController
     {

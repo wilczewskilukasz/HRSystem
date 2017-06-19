@@ -8,12 +8,14 @@ using System.Net;
 using System.Web.Http;
 using HRinfoAPI.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
     // TODO: uncoment
     //[Authorize]
     [RoutePrefix("api/Calendar")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EmployeeCalendarController : ApiController
     {
         HRinfoEntities db = new HRinfoEntities();

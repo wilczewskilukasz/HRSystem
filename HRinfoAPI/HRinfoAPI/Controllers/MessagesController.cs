@@ -6,12 +6,14 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using HRinfoAPI.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
     // TODO: uncoment
     //[Authorize]
     [RoutePrefix("Message")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MessagesController : ApiController
     {
         private HRinfoEntities db = new HRinfoEntities();

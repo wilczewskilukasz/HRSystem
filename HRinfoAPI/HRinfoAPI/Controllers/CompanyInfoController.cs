@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using System.Web.Http.Description;
 using HRinfoAPI.Models;
 using Microsoft.AspNet.Identity;
+using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
     [RoutePrefix("api/Company")]
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CompanyInfoController : ApiController
     {
         HRinfoEntities database = new HRinfoEntities();
