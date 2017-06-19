@@ -1,14 +1,25 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-title>HR Info</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <ion-list>
+    <ion-item ion-item (click)="daneClick()">
+      <ion-icon name="person" item-start></ion-icon>Dane osobowe
+    </ion-item>
+    <ion-item ion-item (click)="stazClick()">
+      <ion-icon name="time" item-start></ion-icon>Staż pracy
+    </ion-item>
+    <ion-item ion-item (click)="urlopClick()">
+      <ion-icon name="plane" item-start></ion-icon>Urlop
+    </ion-item>
+    <ion-item ion-item (click)="wynagrodzenieClick()">
+      <ion-icon name="cash" item-start></ion-icon>Wynagrodzenie
+    </ion-item>
+    <ion-item ion-item (click)="logout()">
+      <ion-icon name="exit" item-start></ion-icon>Wyloguj
+    </ion-item>
+  </ion-list>
 </ion-content>

@@ -1,4 +1,4 @@
-# HRSystem
+# HRInfo System
 ## Multiplatform mobile app based on Ionic framework designed for viewing and managing employees personal data.
 
 To test the client locally:
