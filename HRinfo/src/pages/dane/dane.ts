@@ -4,6 +4,7 @@ import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
+import { AuthService } from '../../providers/auth-service/auth-service';
 
 @Component({
   selector: 'page-home',
@@ -11,12 +12,16 @@ import { LoadingController } from 'ionic-angular';
 })
 export class DanePage {
 
+  token: string;
+
   constructor(public navCtrl: NavController,
+    private authCtrl: AuthService,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
+      this.token = this.authCtrl.getToken();
       this.getData();
     }
     
@@ -37,6 +42,8 @@ export class DanePage {
 
       $.ajax({
           url: "http://hrinfoapi.azurewebsites.net/api/Employee/FindEmployee?employeeId=1",
+          dataType: "json",
+          beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', modelPage.token); },
           async: false,
           success: function (wynik) {
               modelPage.firstName = wynik.FirstName;
