@@ -17,7 +17,7 @@ import { App } from 'ionic-angular';
 
 export class HomePage {
 
-  id = '';
+id: String;
 
   constructor(public navCtrl: NavController,
     private app: App,
@@ -27,7 +27,7 @@ export class HomePage {
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
     let info = this.authCtrl.getUserInfo();
-    this.id = info['id'];
+    this.id = this.authCtrl.getUserID();
   }
 
   daneClick() {

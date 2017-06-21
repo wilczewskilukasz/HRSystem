@@ -7,7 +7,7 @@ export class User {
   email: string;
 
   constructor(employeeId: string, email: string) {
-    this.employeeId = name;
+    this.employeeId = employeeId;
     this.email = email;
   }
 }
@@ -32,6 +32,10 @@ export class AuthService {
 
   public getUserInfo(): User {
     return this.currentUser;
+  }
+
+  public getUserID(): String {
+    return this.currentUser.employeeId;
   }
 
   public logout() {
