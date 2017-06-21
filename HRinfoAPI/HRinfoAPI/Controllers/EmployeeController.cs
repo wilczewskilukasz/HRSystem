@@ -228,7 +228,7 @@ namespace HRinfoAPI.Controllers
             var result = from h in database.EmployeePositionsHistories
                          join e in database.Employees on h.EmployeeId equals e.Id
                          join p in database.Positions on h.PositionId equals p.Id
-                         orderby h.DateFrom, h.DateTo
+                         orderby h.DateFrom descending, h.DateTo descending
                          select new HistoryPositions
                          {
                              PositionId = p.Id,
