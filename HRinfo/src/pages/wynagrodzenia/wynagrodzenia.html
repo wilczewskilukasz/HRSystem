@@ -1,14 +1,14 @@
 ﻿<ion-header>
   <ion-navbar>
-    <ion-title>Dane osobowe</ion-title>
+    <ion-title>Wypłaty wynagrodzeń</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
-  <ion-list ng-repeat="item in salariesList">
-    <ion-item>
-      <h2>item.amount</h2>
-      <p>item.date</p>
+  <ion-list>
+    <ion-item *ngFor="let item of salariesList">
+      <h2>Kwota: {{item.amount | number}}</h2>
+      <p>{{item.date | date : shortDate}}</p>
     </ion-item>
   </ion-list>
 </ion-content>

@@ -18,9 +18,11 @@ export class WynagrodzeniaPage {
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
       this.getData();
-    }
+  }
 
   salariesList: { amount: number, date: Date } [] = [];
+
+  lengthList: number[] = [];
 
   getData() {
       let loading = this.loadingCtrl.create({
@@ -29,6 +31,10 @@ export class WynagrodzeniaPage {
       loading.present();
 
       let modelPage = this;
+
+      for (var i = 0; i < 10; i++) {
+          modelPage.lengthList.push(i);
+      }
 
       $.ajax({
           url: "http://hrinfoapi.azurewebsites.net/api/Employee/Salaries",
