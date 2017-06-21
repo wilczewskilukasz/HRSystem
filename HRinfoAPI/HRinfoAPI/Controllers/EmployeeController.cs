@@ -206,32 +206,6 @@ namespace HRinfoAPI.Controllers
             return this.GetEmployeeContactData((int)workerId);
         }
 
-        [Route("Address")]
-        public IEnumerable<AddressEmployee> CurrentUserAddresses()
-        {
-            this.GetEmployeeId();
-
-            return this.GetEmployeeAddress();
-        }
-
-        [Route("Address")]
-        [HttpGet]
-        public AddressEmployee CurrentUserAddress(int addressTypeId)
-        {
-            this.GetEmployeeId();
-
-            return this.GetEmployeeAddress(null, addressTypeId).Single();
-        }
-
-        [Route("Address")]
-        [HttpGet]
-        public AddressEmployee CurrentUserAddress(string addressTypeName)
-        {
-            this.GetEmployeeId();
-
-            return this.GetEmployeeAddress(null, null, addressTypeName).Single();
-        }
-
         [Route("Salaries")]
         public IEnumerable<EmployeeSalaries> Salaries(int number = 5)
         {
@@ -255,7 +229,8 @@ namespace HRinfoAPI.Controllers
                          join e in database.Employees on h.EmployeeId equals e.Id
                          join p in database.Positions on h.PositionId equals p.Id
                          orderby h.DateFrom, h.DateTo
-                         select new HistoryPositions {
+                         select new HistoryPositions
+                         {
                              PositionId = p.Id,
                              Position = p.Name,
                              DateFrom = h.DateFrom,
@@ -309,24 +284,30 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("Address")]
-        [HttpPut]
-        public async Task<IHttpActionResult> PutAddress(AddressEmployee address)
+        [HttpGet]
+        public IEnumerable<AddressEmployee> CurrentUserAddresses()
         {
-            Street street = this.AddressStreet(address.Street);
-            City city = this.AddressCity(address.City);
-            Country country = this.AddressCountry(address.Country);
-            
-            Address emplAddress = database.Addresses.Single(a => a.Id == address.Id);
-            database.Entry(emplAddress).State = EntityState.Modified;
-            emplAddress.StreetId = street.Id == 0 ? emplAddress.StreetId : street.Id;
-            emplAddress.HouseNumber = String.IsNullOrEmpty(address.HouseNumber) ? emplAddress.HouseNumber : address.HouseNumber;
-            emplAddress.FlatNumber = String.IsNullOrEmpty(address.FlatNumber) ? emplAddress.FlatNumber : address.FlatNumber;
-            emplAddress.PostalCode = String.IsNullOrEmpty(address.PostalCode) ? emplAddress.PostalCode : address.PostalCode;
-            emplAddress.CityId = city.Id == 0 ? emplAddress.CityId : city.Id;
-            emplAddress.CountryId = country.Id == 0 ? emplAddress.CountryId : country.Id;
-            await database.SaveChangesAsync();
+            this.GetEmployeeId();
 
-            return StatusCode(HttpStatusCode.OK);
+            return this.GetEmployeeAddress().OrderBy(a => a.AddressType);
+        }
+
+        [Route("Address")]
+        [HttpGet]
+        public AddressEmployee CurrentUserAddress(int addressTypeId)
+        {
+            this.GetEmployeeId();
+
+            return this.GetEmployeeAddress(null, addressTypeId).Single();
+        }
+
+        [Route("Address")]
+        [HttpGet]
+        public AddressEmployee CurrentUserAddress(string addressTypeName)
+        {
+            this.GetEmployeeId();
+
+            return this.GetEmployeeAddress(null, null, addressTypeName).Single();
         }
 
         [Route("Address")]
@@ -358,6 +339,27 @@ namespace HRinfoAPI.Controllers
                 return BadRequest(ModelState);
 
             database.EmployeesAddresses.Add(employeesAddress);
+            await database.SaveChangesAsync();
+
+            return StatusCode(HttpStatusCode.OK);
+        }
+
+        [Route("Address")]
+        [HttpPut]
+        public async Task<IHttpActionResult> PutAddress(AddressEmployee address)
+        {
+            Street street = this.AddressStreet(address.Street);
+            City city = this.AddressCity(address.City);
+            Country country = this.AddressCountry(address.Country);
+
+            Address emplAddress = database.Addresses.Single(a => a.Id == address.Id);
+            database.Entry(emplAddress).State = EntityState.Modified;
+            emplAddress.StreetId = street.Id == 0 ? emplAddress.StreetId : street.Id;
+            emplAddress.HouseNumber = String.IsNullOrEmpty(address.HouseNumber) ? emplAddress.HouseNumber : address.HouseNumber;
+            emplAddress.FlatNumber = String.IsNullOrEmpty(address.FlatNumber) ? emplAddress.FlatNumber : address.FlatNumber;
+            emplAddress.PostalCode = String.IsNullOrEmpty(address.PostalCode) ? emplAddress.PostalCode : address.PostalCode;
+            emplAddress.CityId = city.Id == 0 ? emplAddress.CityId : city.Id;
+            emplAddress.CountryId = country.Id == 0 ? emplAddress.CountryId : country.Id;
             await database.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.OK);
