@@ -1,4 +1,4 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+﻿import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -9,6 +9,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { TabsPage } from '../pages/tabs/tabs';
 import { DanePage } from '../pages/dane/dane';
+import { WynagrodzeniaPage } from '../pages/wynagrodzenia/wynagrodzenia';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -22,7 +23,8 @@ import { AuthService } from '../providers/auth-service/auth-service';
     KalendarzPage,
     HomePage,
     DanePage,
-    TabsPage
+    TabsPage,
+    WynagrodzeniaPage
   ],
   imports: [
     BrowserModule,
@@ -36,7 +38,8 @@ import { AuthService } from '../providers/auth-service/auth-service';
     KalendarzPage,
     HomePage,
     DanePage,
-    TabsPage
+    TabsPage,
+    WynagrodzeniaPage
   ],
   providers: [
     StatusBar,

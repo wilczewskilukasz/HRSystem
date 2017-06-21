@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { DanePage } from '../dane/dane';
+import { WynagrodzeniaPage } from '../wynagrodzenia/wynagrodzenia';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular';
@@ -31,6 +32,10 @@ export class HomePage {
 
   daneClick() {
     this.navCtrl.push(DanePage);
+  }
+
+  wynagrodzenieClick() {
+      this.navCtrl.push(WynagrodzeniaPage);
   }
 
   public logout() {

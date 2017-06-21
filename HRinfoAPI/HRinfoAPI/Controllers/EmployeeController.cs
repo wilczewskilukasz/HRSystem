@@ -233,17 +233,17 @@ namespace HRinfoAPI.Controllers
         }
 
         [Route("Salaries")]
-        public IEnumerable<EmployeeSalaries> Salaries()
+        public IEnumerable<EmployeeSalaries> Salaries(int number = 5)
         {
             this.GetEmployeeId();
 
-            var result = from e in database.Employees
-                         join p in database.PayOffs on e.Id equals p.EmployeeId
-                         where e.Id == workerId
-                         orderby p.Date descending
-                         select new EmployeeSalaries { Amount = p.Amount, Date = p.Date };
+            var result = (from e in database.Employees
+                          join p in database.PayOffs on e.Id equals p.EmployeeId
+                          where e.Id == workerId
+                          orderby p.Date descending
+                          select p).Take(number);
 
-            return result.ToList();
+            return result.Select(p => new EmployeeSalaries { Amount = p.Amount, Date = p.Date }).ToList();
         }
 
         [Route("PrivateData")]
