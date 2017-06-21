@@ -7,9 +7,9 @@ import { LoadingController } from 'ionic-angular';
 
 @Component({
   selector: 'page-home',
-  templateUrl: 'wynagrodzenia.html'
+  templateUrl: 'staz.html'
 })
-export class WynagrodzeniaPage {
+export class StazPage {
 
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
@@ -20,7 +20,7 @@ export class WynagrodzeniaPage {
       this.getData();
   }
 
-  salariesList: { amount: number, date: Date } [] = [];
+  positionsList: { id: number, position: string, dateFrom: Date, dateTo: Date, salary: number }[] = [];
 
   getData() {
       let loading = this.loadingCtrl.create({
@@ -31,12 +31,18 @@ export class WynagrodzeniaPage {
       let modelPage = this;
 
       $.ajax({
-          url: "http://hrinfoapi.azurewebsites.net/api/Employee/Salaries",
+          url: "http://hrinfoapi.azurewebsites.net/api/Employee/PositionsHistory",
           type: "POST",
           async: false,
           success: function (wynik) {
               $.each(wynik, function (index) {
-                  modelPage.salariesList.push({ "amount": wynik[index].Amount, "date": wynik[index].Date });
+                  modelPage.positionsList.push({
+                      "id": wynik[index].Id,
+                      "position": wynik[index].Position,
+                      "dateFrom": wynik[index].DateFrom,
+                      "dateTo": wynik[index].DateTo,
+                      "salary": wynik[index].Salary
+                  });
               });
           },
           error: function (error) {

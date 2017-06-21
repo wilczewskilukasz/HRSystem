@@ -6,6 +6,7 @@ import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { DanePage } from '../dane/dane';
 import { WynagrodzeniaPage } from '../wynagrodzenia/wynagrodzenia';
+import { StazPage } from '../staz/staz';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular';
@@ -36,6 +37,10 @@ id: String;
 
   wynagrodzenieClick() {
       this.navCtrl.push(WynagrodzeniaPage);
+  }
+
+  stazClick() {
+      this.navCtrl.push(StazPage);
   }
 
   public logout() {
