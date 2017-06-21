@@ -43,6 +43,10 @@ id: String;
       this.navCtrl.push(StazPage);
   }
 
+  urlopClick() {
+      alert("Not supported request...");
+  }
+
   public logout() {
     this.authCtrl.logout().subscribe(succ => {
       this.app.getRootNav().setRoot(LoginPage);
