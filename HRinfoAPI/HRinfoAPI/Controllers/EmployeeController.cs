@@ -246,6 +246,26 @@ namespace HRinfoAPI.Controllers
             return result.Select(p => new EmployeeSalaries { Amount = p.Amount, Date = p.Date }).ToList();
         }
 
+        [Route("PositionsHistory")]
+        public IEnumerable<HistoryPositions> Positions()
+        {
+            this.GetEmployeeId();
+
+            var result = from h in database.EmployeePositionsHistories
+                         join e in database.Employees on h.EmployeeId equals e.Id
+                         join p in database.Positions on h.PositionId equals p.Id
+                         orderby h.DateFrom, h.DateTo
+                         select new HistoryPositions {
+                             PositionId = p.Id,
+                             Position = p.Name,
+                             DateFrom = h.DateFrom,
+                             DateTo = h.DateTo,
+                             Salary = h.Salary
+                         };
+
+            return result.ToList();
+        }
+
         [Route("PrivateData")]
         public EmployeeData PrivateData()
         {

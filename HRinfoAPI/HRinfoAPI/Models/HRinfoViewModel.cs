@@ -7,6 +7,15 @@ namespace HRinfoAPI.Models
     {
     }
 
+    public class HistoryPositions
+    {
+        public int PositionId { get; set; }
+        public string Position { get; set; }
+        public DateTime DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
+        public decimal? Salary { get; set; }
+    }
+
     public class BaseCalendar
     {
         public int Id { get; set; }
