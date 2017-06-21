@@ -10,20 +10,24 @@ using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: uncoment
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("Message")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class MessagesController : ApiController
     {
         private HRinfoEntities db = new HRinfoEntities();
         int? workerId;
-
-        // TODO: ogarnąć
+        
         private void GetEmployeeId()
         {
-            //workerId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
-            workerId = 1;
+            var id = User.Identity.GetUserId();
+            workerId = db.AspNetUsers.Where(a => a.Id == id).Select(a => a.EmployeeId).Single();
+
+            if (!workerId.HasValue)
+            {
+                var username = User.Identity.Name;
+                workerId = db.AspNetUsers.Where(a => a.Email == username).Select(a => a.EmployeeId).Single();
+            }
         }
 
         // GET: api/Message

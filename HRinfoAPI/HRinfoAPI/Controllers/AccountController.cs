@@ -21,8 +21,7 @@ using System.Web.Http.Cors; // przestrzeń dla CORS (Cross Domain)
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: uncoment
-    //[Authorize]
+    [Authorize]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Account")]
     public class AccountController : ApiController

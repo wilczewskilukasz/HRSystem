@@ -13,14 +13,13 @@ using System.Web.Http.Cors; // przestrzeń dla CORS (Cross Domain)
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: Rozwiązanie problemu z lokalnym przekazywaniem danych (cross-domain)
+    // Rozwiązanie problemu z lokalnym przekazywaniem danych (cross-domain)
     // W celu rozwiązania problemu Cross-Domain informacje znajują się pod hasłem:
     // wab api2 cross domain
     // i są dostępne pod adresme:
     // https://docs.microsoft.com/en-us/aspnet/web-api/overview/security/enabling-cross-origin-requests-in-web-api
-
-    // TODO: uncoment
-    //[Authorize]
+    
+    [Authorize]
     //[EnableCors(origins: "http://localhost", headers: "application/json", methods: "GET")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     [RoutePrefix("api/Employee")]
@@ -31,19 +30,14 @@ namespace HRinfoAPI.Controllers
 
         private void GetEmployeeId()
         {
-            // TODO: ogarnąć
-            //var userid = HttpContext.Current.User.Identity.GetUserId();
-            //var username = HttpContext.Current.User.Identity.GetUserName();
-            //var result = database.AspNetUsers.Where(a => a.Email == username).Single().EmployeeId;
-            //var result2 = database.AspNetUsers.Where(a => a.Id == username).Single().EmployeeId;
-            //workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
-
-            //if (result == null)
-            //    workerId = result2;
-            //else
-            //    workerId = result;
-
-            workerId = 1;
+            var id = User.Identity.GetUserId();
+            workerId = database.AspNetUsers.Where(a => a.Id == id).Select(a => a.EmployeeId).Single();
+            
+            if (!workerId.HasValue)
+            {
+                var username = User.Identity.Name;
+                workerId = database.AspNetUsers.Where(a => a.Email == username).Select(a => a.EmployeeId).Single();
+            }
         }
 
         private IEnumerable<AddressEmployee> GetEmployeeAddress(
@@ -198,7 +192,7 @@ namespace HRinfoAPI.Controllers
 
             return result.ToList();
         }
-
+        
         [Route("ContactData")]
         public EmployeeContactData CurrentUserContactData()
         {

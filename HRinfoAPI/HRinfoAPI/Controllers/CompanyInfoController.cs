@@ -18,13 +18,17 @@ namespace HRinfoAPI.Controllers
     {
         HRinfoEntities database = new HRinfoEntities();
         int? workerId;
-
-        // TODO: ogarnąć
+        
         private void GetEmployeeId()
         {
-            //workerId = database.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
+            var id = User.Identity.GetUserId();
+            workerId = database.AspNetUsers.Where(a => a.Id == id).Select(a => a.EmployeeId).Single();
 
-            workerId = 1;
+            if (!workerId.HasValue)
+            {
+                var username = User.Identity.Name;
+                workerId = database.AspNetUsers.Where(a => a.Email == username).Select(a => a.EmployeeId).Single();
+            }
         }
 
         [Route("News")]
@@ -104,6 +108,10 @@ namespace HRinfoAPI.Controllers
             }
 
             this.GetEmployeeId();
+
+            if (!workerId.HasValue)
+                return BadRequest();
+
             privateMessage.EmployeeId = (int)workerId;
             privateMessage.TopicId = database.Topics.Single(t => t.Name == "Problemy z aplikacją").Id;
             privateMessage.StatusId = database.Status.Single(s => s.Name == "Wysłane" && s.EventId == database.Events.Single(e => e.Name == "Wiadomości").Id).Id;

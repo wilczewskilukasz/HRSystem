@@ -12,20 +12,24 @@ using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: uncoment
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/Calendar")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class EmployeeCalendarController : ApiController
     {
         HRinfoEntities db = new HRinfoEntities();
         int? employeeId;
-
-        // TODO: ogarnąć
+        
         private void GetEmployeeId()
         {
-            //employeeId = db.AspNetUsers.Where(a => a.Id == User.Identity.GetUserId()).Select(a => a.EmployeeId).Single();
-            employeeId = 1;
+            var id = User.Identity.GetUserId();
+            employeeId = db.AspNetUsers.Where(a => a.Id == id).Select(a => a.EmployeeId).Single();
+
+            if (!employeeId.HasValue)
+            {
+                var username = User.Identity.Name;
+                employeeId = db.AspNetUsers.Where(a => a.Email == username).Select(a => a.EmployeeId).Single();
+            }
         }
 
         [Route("Employee")]

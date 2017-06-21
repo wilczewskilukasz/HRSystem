@@ -10,8 +10,7 @@ using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: uncoment
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/Dictionary")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class DictionaryController : ApiController

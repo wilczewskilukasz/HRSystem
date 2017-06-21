@@ -11,8 +11,7 @@ using System.Web.Http.Cors;
 
 namespace HRinfoAPI.Controllers
 {
-    // TODO: uncoment
-    //[Authorize]
+    [Authorize]
     [RoutePrefix("api/Calendar")]
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class CompanyCalendarController : ApiController
