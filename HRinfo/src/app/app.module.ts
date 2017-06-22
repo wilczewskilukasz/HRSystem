@@ -18,6 +18,7 @@ import { SzukajPage } from '../pages/szukaj/szukaj';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth-service/auth-service';
+import { CallNumber } from '@ionic-native/call-number'
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import { AuthService } from '../providers/auth-service/auth-service';
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AuthService
+    AuthService,
+    CallNumber
   ]
 })
 export class AppModule { }

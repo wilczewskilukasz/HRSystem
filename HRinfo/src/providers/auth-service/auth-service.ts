@@ -51,7 +51,7 @@ export class AuthService {
               }
           });
           // TODO: dokończyć !!!
-          this.currentUser = new User('admin', credentials.id, token);
+          this.currentUser = new User(credentials.id, credentials.email, token);
         observer.next(access);
         observer.complete();
       });
