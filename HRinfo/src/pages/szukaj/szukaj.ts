@@ -29,8 +29,14 @@ export class SzukajPage {
   position: string;
   department: string;
   resultsNumber: number;
+  afterSearch: boolean = false;
 
   resultList: { resultFirstName: string, resultLastName: string, resultPhoneNumber: string, resultEmail: string, resultPosition: string, resultDepartment: string } [] = [];
+
+  newSearch() {
+      this.afterSearch = false;
+      //this.resultsNumber = 0;
+  }
 
   searchEmployee() {
       let loading = this.loadingCtrl.create({
@@ -57,9 +63,11 @@ export class SzukajPage {
               modelPage.resultsNumber = modelPage.resultList.length;
           },
           error: function (error) {
-              modelPage.authCtrl.showError('Wystąpił błąd podczas wyszukiwania danych.<br/><br/>Prosimy spróbować ponownie później.');
+              modelPage.resultsNumber = 0;
           }
       });
+
+      modelPage.afterSearch = true;
       
       loading.dismiss();
   }
