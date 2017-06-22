@@ -18,7 +18,7 @@ import { SzukajPage } from '../pages/szukaj/szukaj';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth-service/auth-service';
-import { Camera } from '@ionic-native/camera';
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
   declarations: [
@@ -59,7 +59,7 @@ import { Camera } from '@ionic-native/camera';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     AuthService,
-    Camera
+    CallNumber
   ]
 })
 export class AppModule { }
