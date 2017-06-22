@@ -52,7 +52,11 @@
       <p>Stanowisko: {{item.resultPosition}}</p>
       <p>Dział: {{item.Department}}</p>
       <h4>E-mail: {{item.resultEmail}}</h4>
-      <h4>Telefon: <button (click)="call2employee(item.resultPhoneNumber)">{{item.resultPhoneNumber}}</button></h4>
+      <h4>Telefon: <button (click)="call2employee(item.resultPhoneNumber)">
+          {{item.resultPhoneNumber}}
+          <ion-icon name="call"></ion-icon>
+        </button>
+      </h4>
     </ion-item>
   </ion-list>
 </ion-content>

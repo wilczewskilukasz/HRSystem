@@ -11,12 +11,14 @@
       <p *ngIf="item.dateTo">Ważne od {{item.dateFrom | date:shortDate }} do {{item.dateTo | date:shortDate}}</p>
       <p *ngIf="!item.dateTo">Ważne od {{item.dateFrom | date:shortDate }}</p>
     </ion-item>
-
     <ion-item ion-item (click)="newses()">
         <ion-icon name="paper" item-start></ion-icon>Wiadomości
     </ion-item>
     <ion-item ion-item (click)="search()">
       <ion-icon name="search" item-start></ion-icon>Szukaj pracownika
+    </ion-item>
+    <ion-item ion-item (click)="logout()">
+      <ion-icon name="exit" item-start></ion-icon>Wyloguj
     </ion-item>
   </ion-list>
 </ion-content>

@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { WiadomosciPage } from '../wiadomosci/wiadomosci';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { SzukajPage } from '../szukaj/szukaj';
+import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular';
 
 @Component({
@@ -56,5 +57,11 @@ export class FirmaPage {
 
   newses() {
       this.navCtrl.push(WiadomosciPage);
+  }
+
+  public logout() {
+      this.authCtrl.logout().subscribe(succ => {
+          this.app.getRootNav().setRoot(LoginPage);
+      });
   }
 }
