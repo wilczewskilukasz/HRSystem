@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 
 import { KalendarzPage } from '../kalendarz/kalendarz';
-import { SzkoleniaPage } from '../szkolenia/szkolenia';
+import { FirmaPage } from '../firma/firma';
 import { HomePage } from '../home/home';
 
 @Component({
@@ -9,9 +9,9 @@ import { HomePage } from '../home/home';
 })
 export class TabsPage {
 
-  tab1Root = HomePage;
-  tab2Root = KalendarzPage;
-  tab3Root = SzkoleniaPage;
+  tab1Root = FirmaPage;
+  tab2Root = HomePage;
+  tab3Root = KalendarzPage;
 
   constructor() {
 

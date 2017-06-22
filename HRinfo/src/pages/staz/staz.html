@@ -7,7 +7,7 @@
 <ion-content>
   <ion-list>
     <ion-item *ngFor="let item of positionsList">
-      <h2>Kwota: {{item.position}}</h2>
+      <h2>{{item.position}}</h2>
       <p *ngIf="item.dateTo">Od {{item.dateFrom | date: shortDate}} do {{item.dateTo | date : shortDate}}</p>
       <p *ngIf="!item.dateTo">Od {{item.dateFrom | date: shortDate}}</p>
       <p><b>Podstawa wynagrodzenia: {{item.salary | number}}</b></p>

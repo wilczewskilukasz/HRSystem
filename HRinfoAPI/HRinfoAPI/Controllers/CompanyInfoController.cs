@@ -40,13 +40,33 @@ namespace HRinfoAPI.Controllers
                                 || news.DateFrom <= DateTime.UtcNow)
                             && (news.DateTo == null
                                 || news.DateTo >= DateTime.UtcNow)
-                         orderby news.DateFrom ascending
+                         orderby news.DateFrom descending
                          select new NewsResults() {
                              ResultNews = news.News1,
                              ResultDateFrom = news.DateFrom,
                              ResultDateTo = news.DateTo };
 
             return result.ToList();
+        }
+
+        [Route("TopNews")]
+        public IEnumerable<NewsResults> News(int number = 2)
+        {
+            var result = from news in database.News
+                         where news.IsActive == true
+                            && (news.DateFrom == null
+                                || news.DateFrom <= DateTime.UtcNow)
+                            && (news.DateTo == null
+                                || news.DateTo >= DateTime.UtcNow)
+                         orderby news.DateFrom descending
+                         select new NewsResults()
+                         {
+                             ResultNews = news.News1,
+                             ResultDateFrom = news.DateFrom,
+                             ResultDateTo = news.DateTo
+                         };
+
+            return result.ToList().Take(number);
         }
 
         /// <summary>
