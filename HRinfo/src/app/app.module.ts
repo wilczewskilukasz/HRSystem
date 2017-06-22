@@ -18,7 +18,7 @@ import { SzukajPage } from '../pages/szukaj/szukaj';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AuthService } from '../providers/auth-service/auth-service';
-import { CallNumber } from '@ionic-native/call-number'
+import { CallNumber } from '@ionic-native/call-number';
 
 @NgModule({
   declarations: [
