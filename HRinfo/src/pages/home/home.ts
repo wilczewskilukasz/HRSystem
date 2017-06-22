@@ -32,7 +32,7 @@ id: String;
   }
 
   daneClick() {
-    this.navCtrl.push(DanePage);
+      this.navCtrl.push(DanePage);
   }
 
   wynagrodzenieClick() {
@@ -49,7 +49,7 @@ id: String;
 
   public logout() {
     this.authCtrl.logout().subscribe(succ => {
-      this.app.getRootNav().setRoot(LoginPage);
+        this.app.getRootNav().setRoot(LoginPage);
     });
   }
 }

@@ -25,7 +25,7 @@ export class WynagrodzeniaPage {
       this.getData();
   }
 
-  salariesList: { amount: number, date: Date } [] = [];
+  salariesList: { amount: number, date: Date }[] = [];
 
   getData() {
       let loading = this.loadingCtrl.create({
@@ -47,7 +47,7 @@ export class WynagrodzeniaPage {
               });
           },
           error: function (error) {
-              alert(JSON.stringify(error));
+              modelPage.authCtrl.showError('Wystąpił błąd podczas pobierania danych.<br/><br/>Prosimy spróbować ponownie później.');
           }
       });
       

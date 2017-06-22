@@ -77,4 +77,13 @@ export class AuthService {
       observer.complete();
     });
   }
+
+  public showError(text) {
+      let alert = this.alertCtrl.create({
+          title: 'Wystąpił błąd.',
+          subTitle: text,
+          buttons: ['OK']
+      });
+      alert.present(prompt);
+  }
 }

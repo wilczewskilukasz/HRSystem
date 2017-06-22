@@ -15,7 +15,8 @@ export class LoginPage {
     //registerCredentials = { id: 'admin@admin.pl', password: 'Admin123.' };
     registerCredentials = { id: 'tester@wp.pl', password: 'Qwerty123.' };
 
-  constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) { }
+    constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
+    }
 
   public login() {
     this.showLoading()
@@ -24,7 +25,6 @@ export class LoginPage {
         this.nav.setRoot(TabsPage);
       } else {
         this.loading.dismiss();
-        //this.showError("Niepoprawne dane logowania");
       }
     },
       error => {
@@ -42,10 +42,10 @@ export class LoginPage {
   }
 
   showError(text) {
-    this.loading.dismiss();
+      this.loading.dismiss();
 
     let alert = this.alertCtrl.create({
-      title: 'Błąd',
+      title: 'Wystąpił błąd.',
       subTitle: text,
       buttons: ['OK']
     });

@@ -54,7 +54,7 @@ export class DanePage {
               modelPage.department = wynik.Department;
           },
           error: function (error) {
-              alert(JSON.stringify(error));
+              modelPage.authCtrl.showError('Wystąpił błąd podczas pobierania danych.<br/><br/>Prosimy spróbować ponownie później.');
           }
       });
       
