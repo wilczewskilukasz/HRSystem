@@ -69,6 +69,10 @@ export class SzukajPage {
           }
       });
 
+      //$.each(modelPage.resultsNumber, function (index) {
+      //    modelPage.callNumber.callNumber(modelPage.resultsNumber[index].resultPhoneNumber, true);
+      //});
+
       modelPage.afterSearch = true;
       
       loading.dismiss();
