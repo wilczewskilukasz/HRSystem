@@ -1,26 +1,20 @@
 ﻿import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, NavParams } from 'ionic-angular';
 import { AlertController } from 'ionic-angular';
 import { ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
-import { WiadomosciPage } from '../wiadomosci/wiadomosci';
 import { AuthService } from '../../providers/auth-service/auth-service';
-//import { LoginPage } from '../login/login';
-import { App } from 'ionic-angular';
 
 @Component({
   selector: 'page-firma',
-  templateUrl: 'firma.html'
+  templateUrl: 'wiadomosci.html'
 })
-
-export class FirmaPage {
-
-id: String;
-
+export class WiadomosciPage {
+    
   constructor(public navCtrl: NavController,
-    private app: App,
     private authCtrl: AuthService,
+    public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
     public viewCtrl: ViewController,
@@ -33,10 +27,15 @@ id: String;
   newsList: { news: string, dateFrom: Date, dateTo: Date }[] = [];
 
   getData() {
+      let loading = this.loadingCtrl.create({
+          content: "Trwa ładowanie danych..."
+      });
+      loading.present();
+
       let modelPage = this;
 
       $.ajax({
-          url: "http://hrinfoapi.azurewebsites.net/api/Company/TopNews",
+          url: "http://hrinfoapi.azurewebsites.net/api/Company/News",
           type: "POST",
           dataType: "json",
           beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', modelPage.token); },
@@ -47,18 +46,11 @@ id: String;
               });
           },
           error: function (error) {
-              modelPage.authCtrl.showError('Wystąpił błąd podczas pobierania wiadomości.<br/><br/>Prosimy spróbować ponownie później.');
+              modelPage.authCtrl.showError('Wystąpił błąd podczas pobierania danych.<br/><br/>Prosimy spróbować ponownie później.');
           }
       });
-  }
 
-
-
-
-
-
-
-  newses() {
-      this.navCtrl.push(WiadomosciPage);
+      loading.dismiss();
   }
 }
+

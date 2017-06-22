@@ -76,8 +76,6 @@ export class DanePage {
       $.ajax({
           url: "http://hrinfoapi.azurewebsites.net/api/Employee/PrivateData",
           type: "POST",
-          //PrivateData
-          //FindEmployee?employeeId=1
           dataType: "json",
           beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', modelPage.token); },
           async: false,

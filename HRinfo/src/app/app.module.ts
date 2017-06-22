@@ -12,6 +12,7 @@ import { TabsPage } from '../pages/tabs/tabs';
 import { DanePage } from '../pages/dane/dane';
 import { WynagrodzeniaPage } from '../pages/wynagrodzenia/wynagrodzenia';
 import { StazPage } from '../pages/staz/staz';
+import { WiadomosciPage } from '../pages/wiadomosci/wiadomosci';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -28,7 +29,8 @@ import { AuthService } from '../providers/auth-service/auth-service';
     TabsPage,
     WynagrodzeniaPage,
     StazPage,
-    FirmaPage
+    FirmaPage,
+    WiadomosciPage
   ],
   imports: [
     BrowserModule,
@@ -45,7 +47,8 @@ import { AuthService } from '../providers/auth-service/auth-service';
     TabsPage,
     WynagrodzeniaPage,
     StazPage,
-    FirmaPage
+    FirmaPage,
+    WiadomosciPage
   ],
   providers: [
     StatusBar,

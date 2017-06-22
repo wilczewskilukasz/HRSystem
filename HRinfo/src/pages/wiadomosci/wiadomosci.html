@@ -1,19 +1,15 @@
 ﻿<ion-header>
   <ion-navbar>
-    <ion-title>HR Info (Company)</ion-title>
+    <ion-title>Aktualności</ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <ion-item class="topNews" text-wrap *ngFor="let item of newsList">
+    <ion-item text-wrap *ngFor="let item of newsList">
       <h2>{{item.news}}</h2>
       <p *ngIf="item.dateTo">Ważne od {{item.dateFrom | date:shortDate }} do {{item.dateTo | date:shortDate}}</p>
       <p *ngIf="!item.dateTo">Ważne od {{item.dateFrom | date:shortDate }}</p>
-    </ion-item>
-
-    <ion-item ion-item (click)="newses()">
-        <ion-icon name="paper" item-start></ion-icon>Wiadomości
     </ion-item>
   </ion-list>
   <ion-footer>Zalogowano jako użytkownik: {{id}}</ion-footer>
