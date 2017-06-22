@@ -50,8 +50,7 @@ export class AuthService {
                   alertKomunikat.present();
               }
           });
-          // TODO: dokończyć !!!
-          this.currentUser = new User('admin', credentials.id, token);
+          this.currentUser = new User(credentials.id, credentials.id, token);
         observer.next(access);
         observer.complete();
       });
