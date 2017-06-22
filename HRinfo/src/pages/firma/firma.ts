@@ -16,8 +16,6 @@ import { App } from 'ionic-angular';
 
 export class FirmaPage {
 
-id: String;
-
   constructor(public navCtrl: NavController,
     private app: App,
     private authCtrl: AuthService,
@@ -55,10 +53,6 @@ id: String;
   search() {
       this.navCtrl.push(SzukajPage);
   }
-
-
-
-
 
   newses() {
       this.navCtrl.push(WiadomosciPage);

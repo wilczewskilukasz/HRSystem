@@ -5,6 +5,7 @@ import { ToastController } from 'ionic-angular';
 import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { AuthService } from '../../providers/auth-service/auth-service';
+import { CallNumber } from '@ionic-native/call-number';
 
 @Component({
   selector: 'page-firma',
@@ -16,6 +17,7 @@ export class SzukajPage {
 
   constructor(public navCtrl: NavController,
     private authCtrl: AuthService,
+    private callNumber: CallNumber,
     public navParams: NavParams,
     public alertCtrl: AlertController,
     public toastCtrl: ToastController,
