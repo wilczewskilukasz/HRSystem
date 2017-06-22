@@ -176,10 +176,10 @@ namespace HRinfoAPI.Controllers
             var result = from e in database.Employees
                          join p in database.Positions on e.PositionId equals p.Id
                          join d in database.Departments on p.DepartmentId equals d.Id
-                         where (e.FirstName == employeeWorker.FirstName || String.IsNullOrEmpty(employeeWorker.FirstName))
-                            && (e.LastName == employeeWorker.LastName || String.IsNullOrEmpty(employeeWorker.LastName))
-                            && (p.Name == employeeWorker.Position || String.IsNullOrEmpty(employeeWorker.Position))
-                            && (d.Name == employeeWorker.Department || String.IsNullOrEmpty(employeeWorker.Department))
+                         where (e.FirstName.Contains(employeeWorker.FirstName) || String.IsNullOrEmpty(employeeWorker.FirstName))
+                            && (e.LastName.Contains(employeeWorker.LastName) || String.IsNullOrEmpty(employeeWorker.LastName))
+                            && (p.Name.Contains(employeeWorker.Position) || String.IsNullOrEmpty(employeeWorker.Position))
+                            && (d.Name.Contains(employeeWorker.Department) || String.IsNullOrEmpty(employeeWorker.Department))
                          select new EmployeeContactData()
                          {
                              FirstName = e.FirstName,

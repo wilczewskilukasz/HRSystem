@@ -8,7 +8,7 @@ export class User {
   email: string;
   token: string;
 
-  constructor(employeeId: string, email: string, token: string) {
+  constructor(employeeId: string, email: string, token: string, ) {
     this.employeeId = employeeId;
     this.email = email;
     this.token = token;
@@ -50,8 +50,8 @@ export class AuthService {
                   alertKomunikat.present();
               }
           });
-        // TODO: dokończyć !!!
-        this.currentUser = new User('admin', credentials.id, token);
+          // TODO: dokończyć !!!
+          this.currentUser = new User('admin', credentials.id, token);
         observer.next(access);
         observer.complete();
       });

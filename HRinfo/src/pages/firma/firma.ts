@@ -6,7 +6,7 @@ import { ViewController } from 'ionic-angular';
 import { LoadingController } from 'ionic-angular';
 import { WiadomosciPage } from '../wiadomosci/wiadomosci';
 import { AuthService } from '../../providers/auth-service/auth-service';
-//import { LoginPage } from '../login/login';
+import { SzukajPage } from '../szukaj/szukaj';
 import { App } from 'ionic-angular';
 
 @Component({
@@ -52,7 +52,9 @@ id: String;
       });
   }
 
-
+  search() {
+      this.navCtrl.push(SzukajPage);
+  }
 
 
 
