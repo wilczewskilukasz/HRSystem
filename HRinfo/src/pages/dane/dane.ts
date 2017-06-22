@@ -31,6 +31,39 @@ export class DanePage {
   email: string;
   position: string;
   department: string;
+  salaryFee: number;
+  privatePhoneNumber: string;
+  privateEmail: string;
+  holidayDaysTotal: number;
+  usedHolidayDays: number;
+  leftHolidayDays: number;
+  newPrivatePhone: string;
+  newPrivateEmail: string;
+
+  saveChanges() {
+    let modelPage = this;
+
+    if (modelPage.newPrivatePhone == modelPage.privatePhoneNumber
+      && modelPage.newPrivateEmail == modelPage.privateEmail)
+        return;
+    else {
+        let loading = this.loadingCtrl.create({
+            content: "Trwa zapisywanie wprowadzonych zmian..."
+        });
+        loading.present();
+
+        $.ajax({
+            url: "http://hrinfoapi.azurewebsites.net/api/Employee/PrivateData",
+            type: "PUT",
+            dataType: "json",
+            data: { "PrivateEmail": modelPage.newPrivateEmail, "PrivatePhoneNumber": modelPage.newPrivatePhone },
+            beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', modelPage.token); },
+            async: false
+        });
+
+        loading.dismiss();
+    }
+  }
 
   getData() {
       let loading = this.loadingCtrl.create({
@@ -41,7 +74,10 @@ export class DanePage {
       let modelPage = this;
 
       $.ajax({
-          url: "http://hrinfoapi.azurewebsites.net/api/Employee/FindEmployee?employeeId=1",
+          url: "http://hrinfoapi.azurewebsites.net/api/Employee/PrivateData",
+          type: "POST",
+          //PrivateData
+          //FindEmployee?employeeId=1
           dataType: "json",
           beforeSend: function (xhr) { xhr.setRequestHeader('Authorization', modelPage.token); },
           async: false,
@@ -52,6 +88,16 @@ export class DanePage {
               modelPage.email = wynik.Email;
               modelPage.position = wynik.Position;
               modelPage.department = wynik.Department;
+
+              modelPage.salaryFee = wynik.SalaryFee;
+              modelPage.privatePhoneNumber = wynik.PrivatePhoneNumber;
+              modelPage.privateEmail = wynik.PrivateEmail;
+              modelPage.holidayDaysTotal = wynik.HolidayDaysTotal;
+              modelPage.usedHolidayDays = wynik.UsedHolidayDays;
+              modelPage.leftHolidayDays = wynik.HolidayDaysTotal - wynik.UsedHolidayDays;
+
+              modelPage.newPrivatePhone = wynik.PrivatePhoneNumber;
+              modelPage.newPrivateEmail = wynik.PrivateEmail;
           },
           error: function (error) {
               modelPage.authCtrl.showError('Wystąpił błąd podczas pobierania danych.<br/><br/>Prosimy spróbować ponownie później.');

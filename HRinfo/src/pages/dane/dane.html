@@ -1,4 +1,4 @@
-<ion-header>
+﻿<ion-header>
   <ion-navbar>
     <ion-title>Dane osobowe</ion-title>
   </ion-navbar>
@@ -9,17 +9,44 @@
     <ion-item>
       <ion-label>Imię i nazwisko: <b>{{firstName}} {{lastName}}</b></ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label>Telefon: <b>{{phone}}</b> </ion-label>
+    <ion-item *ngIf="phone">
+      <ion-label>Telefon służbowy: <b>{{phone}}</b> </ion-label>
     </ion-item>
-    <ion-item>
-      <ion-label>E-mail: <b>{{email}}</b> </ion-label>
+    <ion-item *ngIf="email">
+      <ion-label>E-mail służbowy: <b>{{email}}</b> </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>Stanowisko: <b>{{position}}</b> </ion-label>
     </ion-item>
     <ion-item>
       <ion-label>Dział: <b>{{department}}</b> </ion-label>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Urlop do wykorzystania: <b>{{leftHolidayDays}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Łącznie dni wolnych: {{holidayDaysTotal}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Wykorzystanych dni wolnych: {{usedHolidayDays}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Telefon prywatny: </ion-label>
+      <ion-input type="text" [(ngModel)]="newPrivatePhone"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>E-mail prywatny: </ion-label>
+      <ion-input type="text" [(ngModel)]="newPrivateEmail"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="salaryFee">
+      <ion-label>Podstawa wynagrodzenia: <b>{{salaryFee | number}}</b></ion-label>
+    </ion-item>
+    <ion-item>
+      <button ion-button icon-left color="light" block (click)="saveChanges()">
+        <ion-icon name="checkmark"></ion-icon>
+        Zapisz
+      </button>
     </ion-item>
   </ion-list>
 </ion-content>

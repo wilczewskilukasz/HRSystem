@@ -241,6 +241,8 @@ namespace HRinfoAPI.Controllers
             this.GetEmployeeId();
 
             var result = from e in database.Employees
+                         join p in database.Positions on e.PositionId equals p.Id
+                         join d in database.Departments on p.DepartmentId equals d.Id
                          where e.Id == workerId
                          select new EmployeeData()
                          {
@@ -252,7 +254,9 @@ namespace HRinfoAPI.Controllers
                              PrivatePhoneNumber = e.PhoneNumber,
                              PrivateEmail = e.Email,
                              HolidayDaysTotal = e.HolidayDaysTotal,
-                             UsedHolidayDays = e.UsedHolidayDays
+                             UsedHolidayDays = e.UsedHolidayDays,
+                             Department = d.Name,
+                             Position = p.Name
                          };
 
             return result.Single();
@@ -270,8 +274,6 @@ namespace HRinfoAPI.Controllers
                 employee.Email = employeeData.PrivateEmail;
             if (employee.PhoneNumber != employeeData.PrivatePhoneNumber)
                 employee.PhoneNumber = employeeData.PrivatePhoneNumber;
-            if (employee.JobPhone != employeeData.PhoneNumber)
-                employee.JobPhone = employeeData.PhoneNumber;
             await database.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.OK);
