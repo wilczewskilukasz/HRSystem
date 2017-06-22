@@ -1,6 +1,7 @@
 ﻿import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
+import { AlertController } from 'ionic-angular';
 
 export class User {
   employeeId: string;
@@ -18,12 +19,15 @@ export class User {
 export class AuthService {
     currentUser: User;
 
+    constructor(public alertCtrl: AlertController) { };
+
   public login(credentials) {
     if (credentials.id === null || credentials.password === null) {
       return Observable.throw("Wprowadź dane logowania");
     } else {
 
         let token: string;
+        let pageModel = this;
 
         return Observable.create(observer => {
           let access = false;
@@ -38,7 +42,12 @@ export class AuthService {
                   token = wynik.token_type + ' ' + wynik.access_token;
               },
               error: function (error) {
-                  alert(JSON.stringify(error));
+                  let alertKomunikat = pageModel.alertCtrl.create({
+                      title: 'Nieprawidłowe dane logowania!',
+                      subTitle: 'Wprowadzone login lub hasło są niepoprawne.',
+                      buttons: ['OK']
+                  });
+                  alertKomunikat.present();
               }
           });
         // TODO: dokończyć !!!

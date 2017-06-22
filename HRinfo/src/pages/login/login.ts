@@ -23,11 +23,13 @@ export class LoginPage {
       if (allowed) {
         this.nav.setRoot(TabsPage);
       } else {
-        this.showError("Niepoprawne dane logowania");
+        this.loading.dismiss();
+        //this.showError("Niepoprawne dane logowania");
       }
     },
       error => {
-        this.showError(error);
+        this.loading.dismiss();
+        //this.showError(error);
       });
   }
 
