@@ -1,4 +1,4 @@
-﻿import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import { AlertController } from 'ionic-angular';
@@ -51,7 +51,7 @@ export class AuthService {
               }
           });
           // TODO: dokończyć !!!
-          this.currentUser = new User(credentials.id, credentials.email, token);
+          this.currentUser = new User('admin', credentials.id, token);
         observer.next(access);
         observer.complete();
       });
