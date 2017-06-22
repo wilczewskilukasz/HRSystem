@@ -30,7 +30,7 @@ export class SzukajPage {
   lastName: string;
   position: string;
   department: string;
-  resultsNumber: number;
+  resultsNumber: number = 0;
   afterSearch: boolean = false;
 
   resultList: { resultFirstName: string, resultLastName: string, resultPhoneNumber: string, resultEmail: string, resultPosition: string, resultDepartment: string } [] = [];
@@ -45,11 +45,15 @@ export class SzukajPage {
           content: "Trwa wyszukiwanie danych..."
       });
       loading.present();
-
+      
       let modelPage = this;
 
-      modelPage.resultList = [];
-      modelPage.resultsNumber = 0;
+      if (modelPage.firstName.length > 0 || modelPage.lastName.length > 0 || modelPage.position.length > 0 || modelPage.department.length > 0) {
+          modelPage.resultList = [];
+          modelPage.resultsNumber = 0;
+      }
+      else
+          alert("Nie wprowadzono danych wyszukiwania");
 
       $.ajax({
           url: "http://hrinfoapi.azurewebsites.net/api/Employee/FindEmployee",
@@ -68,14 +72,14 @@ export class SzukajPage {
               modelPage.resultsNumber = 0;
           }
       });
-
-      //$.each(modelPage.resultsNumber, function (index) {
-      //    modelPage.callNumber.callNumber(modelPage.resultsNumber[index].resultPhoneNumber, true);
-      //});
-
+      
       modelPage.afterSearch = true;
       
       loading.dismiss();
+  }
+
+  call2employee(number: string) {
+      this.callNumber.callNumber(number, true);
   }
 }
 

@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngIf="!afterSearch">
+  <ion-list *ngIf="afterSearch == false || resultsNumber == 0">
     <ion-item>
       <ion-label item-start fixed>Imię:</ion-label>
       <ion-input type="text" [(ngModel)]="firstName" item-end></ion-input>
@@ -30,14 +30,17 @@
     </ion-item>
   </ion-list>
 
-  <ion-item *ngIf="afterSearch">
+  <ion-item *ngIf="afterSearch && resultsNumber > 0">
     <button ion-button icon-left block (click)="newSearch()">
         <ion-icon name="search"></ion-icon>
         Szukaj
     </button>
   </ion-item>
-  <ion-item *ngIf="resultsNumber" color="secondary">
+  <ion-item *ngIf="resultsNumber > 1" color="secondary">
     Odnaleziono {{resultsNumber}} pracowników.
+  </ion-item>
+  <ion-item *ngIf="resultsNumber == 1" color="secondary">
+    Odnaleziono {{resultsNumber}} pracownika.
   </ion-item>
   <ion-item *ngIf="!resultsNumber && afterSearch" color="dark">
     Brak wyników wyszukiwania...
@@ -49,7 +52,7 @@
       <p>Stanowisko: {{item.resultPosition}}</p>
       <p>Dział: {{item.Department}}</p>
       <h4>E-mail: {{item.resultEmail}}</h4>
-      <h4>Telefon: {{item.resultPhoneNumber}}</h4>
+      <h4>Telefon: <button (click)="call2employee(item.resultPhoneNumber)">{{item.resultPhoneNumber}}</button></h4>
     </ion-item>
   </ion-list>
 </ion-content>
