@@ -27,8 +27,8 @@ id: String;
     public toastCtrl: ToastController,
     public viewCtrl: ViewController,
     public loadingCtrl: LoadingController) {
-    let info = this.authCtrl.getUserInfo();
-    this.id = this.authCtrl.getUserID();
+      //let info = this.authCtrl.getUserInfo();
+      this.id = this.authCtrl.getUserID();
   }
 
   daneClick() {
