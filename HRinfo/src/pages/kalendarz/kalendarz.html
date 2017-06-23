@@ -11,13 +11,13 @@
 
 <ion-content padding *ngIf="resultNumber > 0" class="results">
   <ion-list *ngFor="let item of calendarList" text-wrap>
-    <ion-item *ngIf="item.statusName == 'Nowy'" class="created">
+    <ion-item *ngIf="item.statusName == 'Nowy' || item.statusName == ''" class="created">
       <h2 *ngIf="item.dateTo && (item.timeFrom || item.timeTo)">Od {{item.dateFrom | date:shortDate}} {{item.timeFrom}} do {{item.dateTo | date:shortDate}} {{item.timeTo}}</h2>
       <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
       <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
       <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
-      <h3>{{item.eventName}}</h3>
-      <h4>{{item.statusName}}</h4>
+      <h3 *ngIf="item.eventName">{{item.eventName}}</h3>
+      <h4 *ngIf="item.statusName">{{item.statusName}}</h4>
       <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
       <p *ngIf="item.name">Nazwa: {{item.name}}</p>
       <p *ngIf="item.description">Opis: {{item.description}}</p>
@@ -28,8 +28,8 @@
       <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
       <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
       <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
-      <h3>{{item.eventName}}</h3>
-      <h4>{{item.statusName}}</h4>
+      <h3 *ngIf="item.eventName">{{item.eventName}}</h3>
+      <h4 *ngIf="item.statusName">{{item.statusName}}</h4>
       <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
       <p *ngIf="item.name">Nazwa: {{item.name}}</p>
       <p *ngIf="item.description">Opis: {{item.description}}</p>
@@ -40,8 +40,8 @@
       <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
       <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
       <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
-      <h3>{{item.eventName}}</h3>
-      <h4>{{item.statusName}}</h4>
+      <h3 *ngIf="item.eventName">{{item.eventName}}</h3>
+      <h4 *ngIf="item.statusName">{{item.statusName}}</h4>
       <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
       <p *ngIf="item.name">Nazwa: {{item.name}}</p>
       <p *ngIf="item.description">Opis: {{item.description}}</p>
@@ -52,8 +52,8 @@
       <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
       <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
       <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
-      <h3>{{item.eventName}}</h3>
-      <h4>{{item.statusName}}</h4>
+      <h3 *ngIf="item.eventName">{{item.eventName}}</h3>
+      <h4 *ngIf="item.statusName">{{item.statusName}}</h4>
       <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
       <p *ngIf="item.name">Nazwa: {{item.name}}</p>
       <p *ngIf="item.description">Opis: {{item.description}}</p>

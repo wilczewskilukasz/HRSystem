@@ -75,7 +75,6 @@ export class KalendarzPage {
               });
 
               if (modelPage.calendarList.length < 1) {
-                  alert("Brak aktywnych wpisów w kalendarzu.");
                   modelPage.resultNumber = 0;
               }
               else {
@@ -89,5 +88,8 @@ export class KalendarzPage {
       });
 
       loading.dismiss();
+
+      if (modelPage.resultNumber == 0)
+          alert("Brak aktywnych wpisów w kalendarzu.");
   }
 }
