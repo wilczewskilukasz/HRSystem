@@ -7,4 +7,53 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-list *ngFor="let item of calendarList" text-wrap>
+    <ion-item *ngIf="item.statusName == 'Nowy'" class="created">
+      <h2 *ngIf="item.dateTo && (item.timeFrom || item.timeTo)">Od {{item.dateFrom | date:shortDate}} {{item.timeFrom}} do {{item.dateTo | date:shortDate}} {{item.timeTo}}</h2>
+      <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
+      <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
+      <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
+      <h3>{{item.eventName}}</h3>
+      <h4>{{item.statusName}}</h4>
+      <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
+      <p *ngIf="item.name">Nazwa: {{item.name}}</p>
+      <p *ngIf="item.description">Opis: {{item.description}}</p>
+    </ion-item>
+    
+    <ion-item *ngIf="item.statusName == 'Zatwierdzony' || item.statusName == 'Zatwierdzone'" class="commited">
+      <h2 *ngIf="item.dateTo && (item.timeFrom || item.timeTo)">Od {{item.dateFrom | date:shortDate}} {{item.timeFrom}} do {{item.dateTo | date:shortDate}} {{item.timeTo}}</h2>
+      <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
+      <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
+      <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
+      <h3>{{item.eventName}}</h3>
+      <h4>{{item.statusName}}</h4>
+      <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
+      <p *ngIf="item.name">Nazwa: {{item.name}}</p>
+      <p *ngIf="item.description">Opis: {{item.description}}</p>
+    </ion-item>
+
+    <ion-item *ngIf="item.statusName == 'Anulowany' || item.statusName == 'Anulowane' || item.statusName == 'Odrzucony' || item.statusName == 'Odrzucone'" class="canceled">
+      <h2 *ngIf="item.dateTo && (item.timeFrom || item.timeTo)">Od {{item.dateFrom | date:shortDate}} {{item.timeFrom}} do {{item.dateTo | date:shortDate}} {{item.timeTo}}</h2>
+      <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
+      <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
+      <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
+      <h3>{{item.eventName}}</h3>
+      <h4>{{item.statusName}}</h4>
+      <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
+      <p *ngIf="item.name">Nazwa: {{item.name}}</p>
+      <p *ngIf="item.description">Opis: {{item.description}}</p>
+    </ion-item>
+
+    <ion-item *ngIf="item.statusName == 'Wstrzymany'" class="holded">
+      <h2 *ngIf="item.dateTo && (item.timeFrom || item.timeTo)">Od {{item.dateFrom | date:shortDate}} {{item.timeFrom}} do {{item.dateTo | date:shortDate}} {{item.timeTo}}</h2>
+      <h2 *ngIf="item.dateTo && (!item.timeFrom || !item.timeTo)">Od {{item.dateFrom | date:shortDate}} do {{item.dateTo | date:shortDate}}</h2>
+      <h2 *ngIf="!item.dateTo && (item.timeFrom || item.timeTo)">W dniu {{item.dateFrom | date:shortDate}} {{item.timeFrom}}</h2>
+      <h2 *ngIf="!item.dateTo && (!item.timeFrom || !item.timeTo)">W dniu {{item.dateFrom | date:shortDate}}</h2>
+      <h3>{{item.eventName}}</h3>
+      <h4>{{item.statusName}}</h4>
+      <p>Liczba dni roboczych: {{item.workDaysNumber}}</p>
+      <p *ngIf="item.name">Nazwa: {{item.name}}</p>
+      <p *ngIf="item.description">Opis: {{item.description}}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

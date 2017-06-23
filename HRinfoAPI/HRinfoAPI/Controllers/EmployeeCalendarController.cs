@@ -39,11 +39,13 @@ namespace HRinfoAPI.Controllers
             this.GetEmployeeId();
 
             var result = from c in db.Calendars
+                         join s in db.Status on c.StatusId equals s.Id
+                         join e in db.Events on c.EventId equals e.Id
                          where c.IsActive == true
                             && c.EmployeeId == employeeId
-                         orderby c.DateFrom,
+                         orderby c.DateFrom descending,
                             c.TimeFrom,
-                            c.DateTo,
+                            c.DateTo descending,
                             c.TimeTo
                          select new CompanyCalendar()
                          {
@@ -56,9 +58,9 @@ namespace HRinfoAPI.Controllers
                              TimeTo = c.TimeTo,
                              WorkDaysNumber = c.WorkDaysNumber,
                              StatusId = c.StatusId,
-                             StatusName = db.Status.Single(s => s.Id == c.StatusId).Name,
+                             StatusName = s.Name,
                              EventId = c.EventId,
-                             EventName = db.Events.Single(e => e.Id == c.EventId).Name,
+                             EventName = e.Name,
                              IsActive = c.IsActive
                          };
 
@@ -70,6 +72,8 @@ namespace HRinfoAPI.Controllers
         public CompanyCalendar GetCalendar(int id)
         {
             var result = from c in db.Calendars
+                         join s in db.Status on c.StatusId equals s.Id
+                         join e in db.Events on c.EventId equals e.Id
                          where c.Id == id
                          select new CompanyCalendar()
                          {
@@ -82,9 +86,9 @@ namespace HRinfoAPI.Controllers
                              TimeTo = c.TimeTo,
                              WorkDaysNumber = c.WorkDaysNumber,
                              StatusId = c.StatusId,
-                             StatusName = db.Status.Single(s => s.Id == c.StatusId).Name,
+                             StatusName = s.Name,
                              EventId = c.EventId,
-                             EventName = db.Events.Single(e => e.Id == c.EventId).Name,
+                             EventName = e.Name,
                              IsActive = c.IsActive
                          };
 
@@ -98,11 +102,13 @@ namespace HRinfoAPI.Controllers
             this.GetEmployeeId();
 
             var result = from c in db.Calendars
+                         join s in db.Status on c.StatusId equals s.Id
+                         join e in db.Events on c.EventId equals e.Id
                          where c.IsActive == true
                             && c.EmployeeId == employeeId
-                         orderby c.DateFrom,
+                         orderby c.DateFrom descending,
                             c.TimeFrom,
-                            c.DateTo,
+                            c.DateTo descending,
                             c.TimeTo
                          select new CompanyCalendar()
                          {
@@ -112,8 +118,8 @@ namespace HRinfoAPI.Controllers
                              DateFrom = c.DateFrom,
                              DateTo = c.DateTo,
                              WorkDaysNumber = c.WorkDaysNumber,
-                             StatusName = db.Status.Single(s => s.Id == c.StatusId).Name,
-                             EventName = db.Events.Single(e => e.Id == c.EventId).Name,
+                             StatusName = s.Name,
+                             EventName = e.Name,
                          };
 
             return result.ToList();
@@ -124,11 +130,9 @@ namespace HRinfoAPI.Controllers
         public CompanyCalendar GetShortCalendar(int id)
         {
             var result = from c in db.Calendars
+                         join s in db.Status on c.StatusId equals s.Id
+                         join e in db.Events on c.EventId equals e.Id
                          where c.Id == id
-                         orderby c.DateFrom,
-                            c.TimeFrom,
-                            c.DateTo,
-                            c.TimeTo
                          select new CompanyCalendar()
                          {
                              Id = c.Id,
@@ -137,8 +141,8 @@ namespace HRinfoAPI.Controllers
                              DateFrom = c.DateFrom,
                              DateTo = c.DateTo,
                              WorkDaysNumber = c.WorkDaysNumber,
-                             StatusName = db.Status.Single(s => s.Id == c.StatusId).Name,
-                             EventName = db.Events.Single(e => e.Id == c.EventId).Name,
+                             StatusName = s.Name,
+                             EventName = e.Name,
                          };
 
             return result.First();
