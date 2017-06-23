@@ -6,7 +6,8 @@
   </ion-navbar>
 </ion-header>
 
-<ion-item *ngIf="resultNumber == 0" class="empty"></ion-item>
+<ion-content *ngIf="resultNumber == 0" class="empty">
+</ion-content>
 
 <ion-content padding *ngIf="resultNumber > 0" class="results">
   <ion-list *ngFor="let item of calendarList" text-wrap>
