@@ -6,7 +6,9 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-item *ngIf="resultNumber == 0" class="empty"></ion-item>
+
+<ion-content padding *ngIf="resultNumber > 0" class="results">
   <ion-list *ngFor="let item of calendarList" text-wrap>
     <ion-item *ngIf="item.statusName == 'Nowy'" class="created">
       <h2 *ngIf="item.dateTo && (item.timeFrom || item.timeTo)">Od {{item.dateFrom | date:shortDate}} {{item.timeFrom}} do {{item.dateTo | date:shortDate}} {{item.timeTo}}</h2>

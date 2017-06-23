@@ -25,6 +25,8 @@ export class KalendarzPage {
       this.getData();
   }
 
+  resultNumber: number = 0;
+
   calendarList: {
       id: number,
       name: string,
@@ -71,9 +73,18 @@ export class KalendarzPage {
                       "eventName": wynik[index].EventName
                   });
               });
+
+              if (modelPage.calendarList.length < 1) {
+                  alert("Brak aktywnych wpisów w kalendarzu.");
+                  modelPage.resultNumber = 0;
+              }
+              else {
+                  modelPage.resultNumber = modelPage.calendarList.length;
+              }
           },
           error: function (error) {
               modelPage.authCtrl.showError('Wystąpił błąd podczas pobierania danych.<br/><br/>Prosimy spróbować ponownie później.');
+              modelPage.resultNumber = 0;
           }
       });
 
