@@ -14,6 +14,7 @@ export class LoginPage {
     // TODO: na koniec usunąć dane logowania
     //registerCredentials = { id: 'admin@admin.pl', password: 'Admin123.' };
     //registerCredentials = { id: 'tester@wp.pl', password: 'Qwerty123.' };
+    registerCredentials = { id: '', password: '' };
 
     constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
     }
