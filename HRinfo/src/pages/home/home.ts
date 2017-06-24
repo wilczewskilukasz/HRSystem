@@ -7,6 +7,7 @@ import { LoadingController } from 'ionic-angular';
 import { DanePage } from '../dane/dane';
 import { WynagrodzeniaPage } from '../wynagrodzenia/wynagrodzenia';
 import { StazPage } from '../staz/staz';
+import { UrlopyPage } from '../urlopy/urlopy';
 import { AuthService } from '../../providers/auth-service/auth-service';
 import { LoginPage } from '../login/login';
 import { App } from 'ionic-angular';
@@ -44,7 +45,7 @@ id: String;
   }
 
   urlopClick() {
-      alert("Not supported request...");
+      this.navCtrl.push(UrlopyPage);
   }
 
   public logout() {

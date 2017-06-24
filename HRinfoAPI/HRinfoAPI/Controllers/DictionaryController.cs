@@ -31,6 +31,13 @@ namespace HRinfoAPI.Controllers
             return db.Status.Where(s => s.Id == id).Select(s => new DictionaryStatus() { Name = s.Name, Id = s.Id, OrderPosition = s.OrderPosition, EventId = s.EventId });
         }
 
+        [Route("Status/Event")]
+        [HttpGet]
+        public IQueryable<DictionaryStatus> GetStatusByEventId(int eventId)
+        {
+            return db.Status.Where(s => s.EventId == eventId).Select(s => new DictionaryStatus() { Name = s.Name, Id = s.Id, OrderPosition = s.OrderPosition, EventId = s.EventId });
+        }
+
         [Route("Status")]
         [HttpGet]
         public IQueryable<DictionaryStatus> GetStatus(string name)
@@ -175,6 +182,13 @@ namespace HRinfoAPI.Controllers
         public IQueryable<DictionaryEvent> GetEvent(int id)
         {
             return db.Events.Where(s => s.Id == id).Select(s => new DictionaryEvent() { Name = s.Name, Id = s.Id, SolutionBaseId = s.SolutionBaseId });
+        }
+
+        [Route("Event/SolutionBaseId")]
+        [HttpGet]
+        public IQueryable<DictionaryEvent> GetEventBySolutionId(int solutionBaseId)
+        {
+            return db.Events.Where(s => s.SolutionBaseId == solutionBaseId).Select(s => new DictionaryEvent() { Name = s.Name, Id = s.Id, SolutionBaseId = s.SolutionBaseId });
         }
 
         [Route("Event")]

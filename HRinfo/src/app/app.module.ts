@@ -14,6 +14,7 @@ import { WynagrodzeniaPage } from '../pages/wynagrodzenia/wynagrodzenia';
 import { StazPage } from '../pages/staz/staz';
 import { WiadomosciPage } from '../pages/wiadomosci/wiadomosci';
 import { SzukajPage } from '../pages/szukaj/szukaj';
+import { UrlopyPage } from '../pages/urlopy/urlopy';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -33,7 +34,8 @@ import { CallNumber } from '@ionic-native/call-number';
     StazPage,
     FirmaPage,
     WiadomosciPage,
-    SzukajPage
+    SzukajPage,
+    UrlopyPage
   ],
   imports: [
     BrowserModule,
@@ -52,7 +54,8 @@ import { CallNumber } from '@ionic-native/call-number';
     StazPage,
     FirmaPage,
     WiadomosciPage,
-    SzukajPage
+    SzukajPage,
+    UrlopyPage
   ],
   providers: [
     StatusBar,
