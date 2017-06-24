@@ -13,7 +13,7 @@ export class LoginPage {
     loading: Loading;
     // TODO: na koniec usunąć dane logowania
     //registerCredentials = { id: 'admin@admin.pl', password: 'Admin123.' };
-    registerCredentials = { id: 'tester@wp.pl', password: 'Qwerty123.' };
+    //registerCredentials = { id: 'tester@wp.pl', password: 'Qwerty123.' };
 
     constructor(private nav: NavController, private auth: AuthService, private alertCtrl: AlertController, private loadingCtrl: LoadingController) {
     }
