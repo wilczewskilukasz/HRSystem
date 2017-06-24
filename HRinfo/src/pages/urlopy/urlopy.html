@@ -10,8 +10,8 @@
       <ion-col col-12>
         <ion-item>
           <ion-label>Rodzaj urlopu:</ion-label>
-          <ion-select [(ngModel)]="eventName">
-            <ion-option *ngFor="let item of eventList" value="fakeVal" checked="fakeVal">{{item.name}}</ion-option>
+          <ion-select [(ngModel)]="eventId">
+            <ion-option *ngFor="let item of eventList" value="{{item.id}}">{{item.name}}</ion-option>
           </ion-select>
         </ion-item>
       </ion-col>

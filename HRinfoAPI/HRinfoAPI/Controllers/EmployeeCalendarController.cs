@@ -173,19 +173,19 @@ namespace HRinfoAPI.Controllers
                 calendar.TimeTo = cc.TimeTo;
             if (cc.WorkDaysNumber != null)
                 calendar.WorkDaysNumber = cc.WorkDaysNumber;
-            if (db.Events.Single(e => e.Id == cc.EventId).Id > 0)
+            if (cc.EventId > 0 && db.Events.First(e => e.Id == cc.EventId).Id > 0)
                 calendar.EventId = cc.EventId;
             else
             {
-                var eventId = db.Events.Single(e => e.Name == cc.EventName).Id;
+                var eventId = db.Events.First(e => e.Name == cc.EventName).Id;
                 if (eventId > 0)
                     calendar.EventId = eventId;
             }
 
-            if (db.Status.Single(s => s.Id == cc.StatusId && s.EventId == calendar.EventId).Id > 0)
+            if (cc.StatusId > 0 && db.Status.First(s => s.Id == cc.StatusId && s.EventId == calendar.EventId).Id > 0)
                 calendar.StatusId = cc.StatusId;
             else
-                calendar.StatusId = db.Status.Single(s => s.EventId == calendar.EventId && s.OrderPosition == 0).Id;
+                calendar.StatusId = db.Status.First(s => s.EventId == calendar.EventId && s.OrderPosition == 0).Id;
             calendar.PositionRestriction = false;
             calendar.DepartmentRestriction = false;
             calendar.IsActive = true;
